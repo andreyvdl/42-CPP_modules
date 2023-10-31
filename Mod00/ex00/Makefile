@@ -6,7 +6,7 @@
 #    By: adantas- <adantas-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/31 15:39:15 by adantas-          #+#    #+#              #
-#    Updated: 2023/10/31 16:03:41 by adantas-         ###   ########.fr        #
+#    Updated: 2023/10/31 16:41:27 by adantas-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,11 @@ YELLOW=\033[1;33m
 GREEN=\033[1;32m
 RESET=\033[0m
 
+SOURCES=megaphone.cpp
 
-${TARGET}:
+${TARGET}: ${SOURCES}
 	@${ECHO} "${YELLOW}Compiling $@...${RESET}"
-	@c++ -Wall -Wextra -Werror megaphone.cpp -o $@
+	@c++ -Wall -Wextra -Werror -std=c++98 ${SOURCES} -o $@
 	@${ECHO} "${GREEN}Done!${RESET}"
 
 fclean:
