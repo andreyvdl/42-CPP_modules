@@ -10,20 +10,44 @@
 
 #include <iostream>
 #include <string>
-#include <iomanip>
-#include "../include/PhoneBook.hpp"
+#include <cstdio> // for fflush
+#include "PhoneBook.hpp"
+#include "Defines.hpp"
 
 namespace utils {
-	void youAreGoingToBrazil(void) {
-		std::locale::global(std::locale("pt-BR.UTF-8"));
-		std::wcout.imbue(std::locale());
+	void activateUnicode(void) {
+		std::setlocale(LC_ALL, "en_US.UTF-8");
+	}
+
+	void clearCin(void) {
+		fflush(NULL);
+		std::cin.clear();
 	}
 }
 
 int main(void) {
 	PhoneBook book;
+	std::string cmd;
 
-	utils::youAreGoingToBrazil();
-	std::wcout << "WELCOME TO BRÁZIL'S PHONEBOOK" << std::endl;
+	// utils::activateUnicode();
+	std::cout << FG_BD_CYAN << "Welcome to the phonebook!" << RESET <<
+	std::endl;
+	while (cmd != "EXIT") {
+		if (std::cin.eof())
+			utils::clearCin();
+		std::cout << "PhoneBook> ";
+		std::cin >> cmd;
+		if (cmd == "ADD")
+			book.addContact();
+		else if (cmd == "SEARCH")
+			book.searchContact();
+		else if (cmd == "HELP")
+			std::cout << "The commands are HELP, ADD, SEARCH and EXIT." <<
+			std::endl;
+		else if (cmd != "EXIT")
+			std::cout << FG_BD_RED << "Invalid command." << RESET << std::endl;
+	}
+	utils::clearCin();
+	std::cout << "Bye!" << std::endl;
 	return (0);
 }

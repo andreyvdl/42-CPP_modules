@@ -11,12 +11,12 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-# include "../include/Contact.hpp"
+# include "Contact.hpp"
 
 class PhoneBook {
 	private:
-		Contact contacts[8];
-		size_t nbrOfContactsAdded = 0;
+		Contact _contacts[8];
+		static size_t _nbrOfContactsAdded;
 	
 	public:
 		/**

@@ -4,7 +4,7 @@
  * @brief Implementation of the Contact class.
  * @version 1
  * @date 2023-11-02
- * 
+ *
  * @copyright Copyright (c) 2023
  */
 
@@ -46,11 +46,11 @@ std::wstring Contact::getNickname(void) const {
 	return (this->_nickname);
 }
 
-void Contact::setPhoneNumber(std::wstring phoneNumber) {
+void Contact::setPhoneNumber(std::string phoneNumber) {
 	this->_phoneNumber = phoneNumber;
 }
 
-std::wstring Contact::getPhoneNumber(void) const {
+std::string Contact::getPhoneNumber(void) const {
 	return (this->_phoneNumber);
 }
 
