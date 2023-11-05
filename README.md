@@ -5,48 +5,40 @@
 </div>
 
 ---
-<table>
+<table align=center>
 	<tr>
+		<th style=font-weight:bold>Module</th>
+		<th style=font-weight:bold>Score</th>
+		<th style=font-weight:bold>Module</th>
+		<th style=font-weight:bold>Score</th>
+		<th style=font-weight:bold>Module</th>
+		<th style=font-weight:bold>Score</th>
+		<th style=font-weight:bold>Module</th>
+		<th style=font-weight:bold>Score</th>
 		<th style=font-weight:bold>Module</th>
 		<th style=font-weight:bold>Score</th>
 	</tr>
 	<tr>
 		<td>Module 0</td>
 		<td>0/100</td>
-	</tr>
-	<tr>
 		<td>Module 1</td>
 		<td>0/100</td>
-	</tr>
-	<tr>
 		<td>Module 2</td>
 		<td>0/100</td>
-	</tr>
-	<tr>
 		<td>Module 3</td>
 		<td>0/100</td>
-	</tr>
-	<tr>
 		<td>Module 4</td>
 		<td>0/100</td>
 	</tr>
 	<tr>
 		<td>Module 5</td>
 		<td>0/100</td>
-	</tr>
-	<tr>
 		<td>Module 6</td>
 		<td>0/100</td>
-	</tr>
-	<tr>
 		<td>Module 7</td>
 		<td>0/100</td>
-	</tr>
-	<tr>
 		<td>Module 8</td>
 		<td>0/100</td>
-	</tr>
-	<tr>
 		<td>Module 9</td>
 		<td>0/100</td>
 	</tr>
