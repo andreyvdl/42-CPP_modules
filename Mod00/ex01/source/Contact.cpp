@@ -11,16 +11,9 @@
 #include "../include/Contact.hpp"
 #include "../include/Defines.hpp"
 
-Contact::Contact(void) {
-	Contact::_constructorCalls++;
-	std::cout << FG_GREEN << "Contact " << Contact::_constructorCalls <<
-		" created" << RESET << std::endl;
-}
-Contact::~Contact(void) {
-	std::cout << FG_RED << "Contact " << Contact::_constructorCalls <<
-		" destroyed" << RESET << std::endl;
-	Contact::_constructorCalls--;
-}
+Contact::Contact(void) {}
+
+Contact::~Contact(void) {}
 
 void Contact::setFirstName(std::string firstName) {
 	this->_firstName = firstName;

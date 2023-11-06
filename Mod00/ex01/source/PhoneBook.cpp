@@ -71,19 +71,19 @@ namespace utilsPhoneBook {
 	}
 
 	void printStartOfTable(void) {
-		std::cout << FG_CYAN << "+---INDEX--+---FNAME--+--LNAME---+-NICKNAME-+"
+		std::cout << FG_CYAN << "|---INDEX--|---FNAME--|--LNAME---|-NICKNAME-|"
 			<< RESET << std::endl;
 	}
 
 	void printEndOfTable(void) {
-		std::cout << FG_CYAN << "+----------+----------+----------+----------+"
+		std::cout << FG_CYAN << "|----------|----------|----------|----------|"
 			<< RESET << std::endl;
 	}
 
 	void printIndex(int idx) {
 		std::cout << FG_CYAN << "|" << RESET;
-		std::cout << std::right << std::setfill(' ') << std::setw(10) << idx <<
-			FG_CYAN << "|" << RESET << std::flush;
+		std::cout << std::setw(10);
+		std::cout << idx << FG_CYAN << "|" << RESET << std::flush;
 	}
 
 	void printContactField(std::string field) {
@@ -94,9 +94,12 @@ namespace utilsPhoneBook {
 			strCopy = field.substr(0, 9);
 			std::cout << strCopy << "." << FG_CYAN << "|" << RESET << std::flush;
 		}
-		else if (len > 0)
-			std::cout << std::right << std::setfill(' ') << std::setw(len + 1)
-				<< field << FG_CYAN << "|" << RESET << std::flush;
+		else if (len > 0) {
+			do {
+				std::cout << " ";
+			} while (--len);
+			std::cout << field << FG_CYAN << "|" << RESET << std::flush;
+		}
 		else if (len == 0)
 			std::cout << field << FG_CYAN << "|" << RESET << std::flush;
 	}
@@ -112,13 +115,9 @@ namespace utilsPhoneBook {
 
 /* Class methods =========================================================== */
 
-PhoneBook::PhoneBook(void) {
-	std::cout << FG_GREEN << "PhoneBook created." << RESET << std::endl;
-}
+PhoneBook::PhoneBook(void) {}
 
-PhoneBook::~PhoneBook(void) {
-	std::cout << FG_RED << "PhoneBook destroyed." << RESET << std::endl;
-}
+PhoneBook::~PhoneBook(void) {}
 
 Contact* PhoneBook::getContact(unsigned short int idx) const {
 	return (const_cast<Contact*>(&this->_contacts[idx]));
@@ -215,6 +214,7 @@ void PhoneBook::searchContact(void) {
 			utilsPhoneBook::printContactField(this->_contacts[i].getFirstName());
 			utilsPhoneBook::printContactField(this->_contacts[i].getLastName());
 			utilsPhoneBook::printContactField(this->_contacts[i].getNickname());
+			std::cout << std::endl;
 		}
 	}
 	else {
@@ -223,9 +223,9 @@ void PhoneBook::searchContact(void) {
 			utilsPhoneBook::printContactField(this->_contacts[i].getFirstName());
 			utilsPhoneBook::printContactField(this->_contacts[i].getLastName());
 			utilsPhoneBook::printContactField(this->_contacts[i].getNickname());
+			std::cout << std::endl;
 		}
 	}
-	std::cout << std::endl;
 	utilsPhoneBook::printEndOfTable();
 
 	std::string idx;
