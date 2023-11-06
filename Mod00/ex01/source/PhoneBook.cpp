@@ -14,40 +14,36 @@
 #include <iomanip>
 #include <cstdio> // for fflush
 #include <cstdlib> // for std::atoi
+#include <limits> // for std::numeric_limits
 
 namespace utilsPhoneBook {
-	void clearWCin(void) {
-		std::wcin.eof();
-		fflush(stdin);
-		std::wcin.clear();
-	}
-
 	void clearCin(void) {
 		std::cin.eof();
 		fflush(stdin);
+		std::clearerr(stdin);
 		std::cin.clear();
 	}
 
 	bool validPhoneNbr(std::string phone) {
-		if (phone.size() > 9 || phone.size() < 7)
-			return (false);
+		if (phone.size() > 10 || phone.size() < 7)
+			return (true);
 		for (size_t i = 0; i < phone.size(); ++i) {
 			if (i < 4 && !std::isdigit(phone[i]))
-				return (false);
+				return (true);
 			else if (i > 3 && i < 6 && phone[i] != '-'
 			&& !std::isdigit(phone[i]))
-				return (false);
+				return (true);
 			else if (i > 6 && !std::isdigit(phone[i]))
-				return (false);
+				return (true);
 		}
-		return (true);
+		return (false);
 	}
 
-	bool parseName(std::wstring name) {
+	bool parseName(std::string name) {
 		if (name.empty())
 			return (false);
-		for (std::wstring::iterator it = name.begin(); it != name.end(); ++it) {
-			if (!iswalpha(*it))
+		for (std::string::iterator it = name.begin(); it != name.end(); ++it) {
+			if (!isalpha(*it))
 				return (false);
 		}
 		return (true);
@@ -74,33 +70,43 @@ namespace utilsPhoneBook {
 		return (true);
 	}
 
-	void printStartOrEndOfTable(void) {
+	void printStartOfTable(void) {
 		std::cout << FG_CYAN << "+---INDEX--+---FNAME--+--LNAME---+-NICKNAME-+"
-		<< RESET << std::endl;
+			<< RESET << std::endl;
+	}
+
+	void printEndOfTable(void) {
+		std::cout << FG_CYAN << "+----------+----------+----------+----------+"
+			<< RESET << std::endl;
 	}
 
 	void printIndex(int idx) {
 		std::cout << FG_CYAN << "|" << RESET;
-		std::cout << std::setw(9) << idx << FG_CYAN << "|" << RESET;
+		std::cout << std::right << std::setfill(' ') << std::setw(10) << idx <<
+			FG_CYAN << "|" << RESET << std::flush;
 	}
 
-	void printContactField(std::wstring field, int len) {
-		std::wstring wStrCopy;
+	void printContactField(std::string field) {
+		std::string strCopy;
+		int len = 10 - static_cast<int>(field.size());
 
 		if (len < 0) {
-			wStrCopy = field.substr(0, 9);
-			std::wcout << wStrCopy << "." << FG_CYAN << "|" << RESET;
+			strCopy = field.substr(0, 9);
+			std::cout << strCopy << "." << FG_CYAN << "|" << RESET << std::flush;
 		}
-		else
-			std::wcout << std::setw(len) << field << FG_CYAN << "|" << RESET;
+		else if (len > 0)
+			std::cout << std::right << std::setfill(' ') << std::setw(len + 1)
+				<< field << FG_CYAN << "|" << RESET << std::flush;
+		else if (len == 0)
+			std::cout << field << FG_CYAN << "|" << RESET << std::flush;
 	}
 
-	void printThisContact(Contact contact) {
-		std::wcout << "First name: " << contact.getFirstName() << std::endl;
-		std::wcout << "Last name: " << contact.getLastName() << std::endl;
-		std::wcout << "Nickname: " << contact.getNickname() << std::endl;
-		std::cout << "Phone number: " << contact.getPhoneNumber() << std::endl;
-		std::wcout << "Darkest secret: " << contact.getDarkSecret() << std::endl;
+	void printThisContact(Contact* contact) {
+		std::cout << "First name: " << contact->getFirstName() << std::endl;
+		std::cout << "Last name: " << contact->getLastName() << std::endl;
+		std::cout << "Nickname: " << contact->getNickname() << std::endl;
+		std::cout << "Phone number: " << contact->getPhoneNumber() << std::endl;
+		std::cout << "Darkest secret: " << contact->getDarkSecret() << std::endl;
 	}
 }
 
@@ -119,58 +125,72 @@ Contact* PhoneBook::getContact(unsigned short int idx) const {
 }
 
 void PhoneBook::addContact(void) {
-	std::wstring fName;
-	std::wstring lName;
-	std::wstring nName;
+	std::string fName;
+	std::string lName;
+	std::string nName;
 	std::string phoneNbr;
-	std::wstring dSecret;
+	std::string dSecret;
 
 	while (true) {
-		if (std::wcin.eof())
-			utilsPhoneBook::clearWCin();
-		std::cout << "First name: ";
-		std::wcin >> fName;
-		if (utilsPhoneBook::parseName(fName))
+		if (std::cin.eof() || std::cin.fail())
+			utilsPhoneBook::clearCin();
+		std::cout << "First name: " << std::flush;
+		std::getline(std::cin, fName);
+		if (utilsPhoneBook::parseName(fName)) {
+			utilsPhoneBook::clearCin();
 			break;
+		}
 		std::cout << FG_BD_RED << "Invalid name." << RESET << std::endl;
 		fName.clear();
 	}
+	utilsPhoneBook::clearCin();
 	while (true) {
-		if (std::wcin.eof())
-			utilsPhoneBook::clearWCin();
-		std::cout << "Last name: ";
-		std::wcin >> lName;
-		if (utilsPhoneBook::parseName(lName))
+		if (std::cin.eof() || std::cin.fail())
+			utilsPhoneBook::clearCin();
+		std::cout << "Last name: " << std::flush;
+		std::getline(std::cin, lName);
+		if (utilsPhoneBook::parseName(lName)) {
+			utilsPhoneBook::clearCin();
 			break;
+		}
 		std::cout << FG_BD_RED << "Invalid name." << RESET << std::endl;
 		lName.clear();
 	}
+	utilsPhoneBook::clearCin();
 	while (true) {
-		if (std::wcin.eof())
-			utilsPhoneBook::clearWCin();
-		std::cout << "Nickname: ";
-		std::wcin >> nName;
-		if (!nName.empty())
+		if (std::cin.eof() || std::cin.fail())
+			utilsPhoneBook::clearCin();
+		std::cout << "Nickname: " << std::flush;
+		std::getline(std::cin, nName);
+		if (!nName.empty()) {
+			utilsPhoneBook::clearCin();
 			break;
+		}
 		std::cout << FG_BD_RED << "Invalid nickname." << RESET << std::endl;
 	}
+	utilsPhoneBook::clearCin();
 	while (true) {
-		if (std::cin.eof())
+		if (std::cin.eof() || std::cin.fail())
 			utilsPhoneBook::clearCin();
-		std::cout << "Phone number: ";
-		std::cin >> phoneNbr;
-		if (utilsPhoneBook::parsePhone(phoneNbr))
+		std::cout << "Phone number: " << std::flush;
+		std::getline(std::cin, phoneNbr);
+		if (utilsPhoneBook::parsePhone(phoneNbr)) {
+			utilsPhoneBook::clearCin();
 			break;
+		}
 		std::cout << FG_BD_RED << "Invalid phone number." << RESET << std::endl;
 		phoneNbr.clear();
 	}
+	utilsPhoneBook::clearCin();
 	while (true) {
-		if (std::wcin.eof())
-			utilsPhoneBook::clearWCin();
-		std::cout << "Your darkest secret: ";
-		getline(std::wcin, dSecret);
-		if (!dSecret.empty())
+		if (std::cin.eof() || std::cin.fail())
+			utilsPhoneBook::clearCin();
+		std::cout << "Your darkest secret: " << std::flush;
+		std::getline(std::cin, dSecret);
+		if (!dSecret.empty()) {
+			utilsPhoneBook::clearCin();
 			break;
+		}
 		std::cout << FG_BD_RED << "Invalid secret." << RESET << std::endl;
 	}
 	this->_contacts[this->_nbrOfContactsAdded % 8].setFirstName(fName);
@@ -184,48 +204,43 @@ void PhoneBook::addContact(void) {
 void PhoneBook::searchContact(void) {
 	if (this->_nbrOfContactsAdded == 0) {
 		std::cout << FG_BD_YELLOW << "Your contact list is empty." << RESET <<
-		std::endl;
+			std::endl;
 		return;
 	}
 
-	utilsPhoneBook::printStartOrEndOfTable();
+	utilsPhoneBook::printStartOfTable();
 	if (this->_nbrOfContactsAdded < 8) {
 		for (size_t i = 0; i < this->_nbrOfContactsAdded; ++i) {
 			utilsPhoneBook::printIndex(i);
-			utilsPhoneBook::printContactField(this->_contacts[i].getFirstName(),
-				10 - this->_contacts[i].getFirstName().length());
-			utilsPhoneBook::printContactField(this->_contacts[i].getLastName(),
-				10 - this->_contacts[i].getLastName().length());
-			utilsPhoneBook::printContactField(this->_contacts[i].getNickname(),
-				10 - this->_contacts[i].getNickname().length());
+			utilsPhoneBook::printContactField(this->_contacts[i].getFirstName());
+			utilsPhoneBook::printContactField(this->_contacts[i].getLastName());
+			utilsPhoneBook::printContactField(this->_contacts[i].getNickname());
 		}
 	}
 	else {
 		for (size_t i = 0; i < 8; ++i) {
 			utilsPhoneBook::printIndex(i);
-			utilsPhoneBook::printContactField(this->_contacts[i].getFirstName(),
-				10 - this->_contacts[i].getFirstName().length());
-			utilsPhoneBook::printContactField(this->_contacts[i].getLastName(),
-				10 - this->_contacts[i].getLastName().length());
-			utilsPhoneBook::printContactField(this->_contacts[i].getNickname(),
-				10 - this->_contacts[i].getNickname().length());	
+			utilsPhoneBook::printContactField(this->_contacts[i].getFirstName());
+			utilsPhoneBook::printContactField(this->_contacts[i].getLastName());
+			utilsPhoneBook::printContactField(this->_contacts[i].getNickname());
 		}
 	}
-	utilsPhoneBook::printStartOrEndOfTable();
+	std::cout << std::endl;
+	utilsPhoneBook::printEndOfTable();
 
 	std::string idx;
 
 	while (true) {
-		if (std::cin.eof())
+		if (std::cin.eof() || std::cin.fail())
 			utilsPhoneBook::clearCin();
-		std::cout << "Select an index: ";
-		std::cin >> idx;
+		std::cout << "Select an index: " << std::flush;
+		std::getline(std::cin, idx);
 		if (utilsPhoneBook::parseIndex(idx, this->_nbrOfContactsAdded))
 			break;
 		std::cout << FG_BD_RED << "Invalid index." << RESET << std::endl;
 	}
 	utilsPhoneBook::clearCin();
-	utilsPhoneBook::printThisContact(this->_contacts[std::atoi(idx.c_str())]);
+	utilsPhoneBook::printThisContact(&this->_contacts[std::atoi(idx.c_str())]);
 }
 
 size_t PhoneBook::_nbrOfContactsAdded = 0;

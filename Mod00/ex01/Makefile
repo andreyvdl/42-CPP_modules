@@ -6,16 +6,12 @@
 #    By: adantas- <adantas-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/31 16:26:40 by adantas-          #+#    #+#              #
-#    Updated: 2023/11/05 19:16:53 by adantas-         ###   ########.fr        #
+#    Updated: 2023/11/06 11:52:17 by adantas-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 TARGET=phonebook.exec
-ifeq (${shell echo -e}, -e)
-	ECHO=echo
-else
-	ECHO=echo -e
-endif
+ECHO=/usr/bin/echo -e
 YELLOW=\033[1;33m
 GREEN=\033[1;32m
 RESET=\033[0m

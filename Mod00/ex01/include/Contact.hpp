@@ -15,11 +15,11 @@
 
 class Contact {
 	private:
-		std::wstring _firstName;
-		std::wstring _lastName;
-		std::wstring _nickname;
+		std::string _firstName;
+		std::string _lastName;
+		std::string _nickname;
 		std::string _phoneNumber;
-		std::wstring _darkestSecret;
+		std::string _darkestSecret;
 		static int  _constructorCalls;
 
 	public:
@@ -37,39 +37,39 @@ class Contact {
 		 *
 		 * @param firstName the string to be place in _firstName.
 		 */
-		void setFirstName(std::wstring firstName);
+		void setFirstName(std::string firstName);
 		/**
 		 * @brief Get the _firstName member.
 		 *
 		 * @return _firstName.
 		 */
-		std::wstring getFirstName(void) const;
+		std::string getFirstName(void) const;
 
 		/**
 		 * @brief Set the _lastName member.
 		 *
 		 * @param lastName the string to be place in _lastName.
 		 */
-		void setLastName(std::wstring lastName);
+		void setLastName(std::string lastName);
 		/**
 		 * @brief Get the _lastName member.
 		 *
 		 * @return _lastName.
 		 */
-		std::wstring getLastName(void) const;
+		std::string getLastName(void) const;
 
 		/**
 		 * @brief Set the _nickname member.
 		 *
 		 * @param nickname the string to be place in _nickname.
 		 */
-		void setNickname(std::wstring nickname);
+		void setNickname(std::string nickname);
 		/**
 		 * @brief Get the _nickname member.
 		 *
 		 * @return _nickname.
 		 */
-		std::wstring getNickname(void) const;
+		std::string getNickname(void) const;
 
 		/**
 		 * @brief Set the _phoneNumber member.
@@ -89,13 +89,13 @@ class Contact {
 		 *
 		 * @param darkestSecret the string to be place in _darkestSecret.
 		 */
-		void setDarkSecret(std::wstring darkestSecret);
+		void setDarkSecret(std::string darkestSecret);
 		/**
 		 * @brief Get the _darkestSecret member.
 		 *
 		 * @return _darkestSecret.
 		 */
-		std::wstring getDarkSecret(void) const;
+		std::string getDarkSecret(void) const;
 };
 
 #endif

@@ -13,36 +13,36 @@
 
 Contact::Contact(void) {
 	Contact::_constructorCalls++;
-	std::cout << FG_GREEN << "Contact " << Contact::_constructorCalls << " created" <<
-	RESET << std::endl;
+	std::cout << FG_GREEN << "Contact " << Contact::_constructorCalls <<
+		" created" << RESET << std::endl;
 }
 Contact::~Contact(void) {
-	std::cout << FG_RED << "Contact " << Contact::_constructorCalls << " destroyed" <<
-	RESET << std::endl;
+	std::cout << FG_RED << "Contact " << Contact::_constructorCalls <<
+		" destroyed" << RESET << std::endl;
 	Contact::_constructorCalls--;
 }
 
-void Contact::setFirstName(std::wstring firstName) {
+void Contact::setFirstName(std::string firstName) {
 	this->_firstName = firstName;
 }
 
-std::wstring Contact::getFirstName(void) const {
+std::string Contact::getFirstName(void) const {
 	return (this->_firstName);
 }
 
-void Contact::setLastName(std::wstring lastName) {
+void Contact::setLastName(std::string lastName) {
 	this->_lastName = lastName;
 }
 
-std::wstring Contact::getLastName(void) const {
+std::string Contact::getLastName(void) const {
 	return (this->_lastName);
 }
 
-void Contact::setNickname(std::wstring nickname) {
+void Contact::setNickname(std::string nickname) {
 	this->_nickname = nickname;
 }
 
-std::wstring Contact::getNickname(void) const {
+std::string Contact::getNickname(void) const {
 	return (this->_nickname);
 }
 
@@ -54,11 +54,11 @@ std::string Contact::getPhoneNumber(void) const {
 	return (this->_phoneNumber);
 }
 
-void Contact::setDarkSecret(std::wstring darkestSecret) {
+void Contact::setDarkSecret(std::string darkestSecret) {
 	this->_darkestSecret = darkestSecret;
 }
 
-std::wstring Contact::getDarkSecret(void) const {
+std::string Contact::getDarkSecret(void) const {
 	return (this->_darkestSecret);
 }
 

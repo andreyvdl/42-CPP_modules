@@ -15,12 +15,9 @@
 #include "Defines.hpp"
 
 namespace utils {
-	void activateUnicode(void) {
-		std::setlocale(LC_ALL, "en_US.UTF-8");
-	}
-
 	void clearCin(void) {
 		fflush(NULL);
+		std::clearerr(stdin);
 		std::cin.clear();
 	}
 }
@@ -29,14 +26,13 @@ int main(void) {
 	PhoneBook book;
 	std::string cmd;
 
-	// utils::activateUnicode();
 	std::cout << FG_BD_CYAN << "Welcome to the phonebook!" << RESET <<
-	std::endl;
+		std::endl;
 	while (cmd != "EXIT") {
-		if (std::cin.eof())
+		if (std::cin.eof() || std::cin.fail())
 			utils::clearCin();
-		std::cout << "PhoneBook> ";
-		std::cin >> cmd;
+		std::cout << "PhoneBook> " << std::flush;
+		std::getline(std::cin, cmd);
 		if (cmd == "ADD")
 			book.addContact();
 		else if (cmd == "SEARCH")
