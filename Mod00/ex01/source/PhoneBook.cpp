@@ -82,8 +82,8 @@ namespace utilsPhoneBook {
 
 	void printIndex(int idx) {
 		std::cout << FG_CYAN << "|" << RESET;
-		std::cout << std::setw(10);
-		std::cout << idx << FG_CYAN << "|" << RESET << std::flush;
+		std::cout << std::setw(10) << idx << FG_CYAN << "|" << RESET
+			<< std::flush;
 	}
 
 	void printContactField(std::string field) {
@@ -94,14 +94,10 @@ namespace utilsPhoneBook {
 			strCopy = field.substr(0, 9);
 			std::cout << strCopy << "." << FG_CYAN << "|" << RESET << std::flush;
 		}
-		else if (len > 0) {
-			do {
-				std::cout << " ";
-			} while (--len);
-			std::cout << field << FG_CYAN << "|" << RESET << std::flush;
+		else {
+			std::cout << std::setw(10) << field << FG_CYAN << "|" << RESET
+				<< std::flush;
 		}
-		else if (len == 0)
-			std::cout << field << FG_CYAN << "|" << RESET << std::flush;
 	}
 
 	void printThisContact(Contact* contact) {
