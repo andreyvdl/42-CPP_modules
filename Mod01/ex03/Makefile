@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: adantas- <adantas-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/09 15:54:11 by adantas-          #+#    #+#              #
-#    Updated: 2023/11/09 15:54:12 by adantas-         ###   ########.fr        #
+#    Created: 2023/11/09 15:54:21 by adantas-          #+#    #+#              #
+#    Updated: 2023/11/09 15:54:38 by adantas-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-TARGET=Pointers.exec
+TARGET=Weapons.exec
 ECHO=/usr/bin/echo -e
 YELLOW=\033[1;33m
 GREEN=\033[1;32m
@@ -18,11 +18,11 @@ RESET=\033[0m
 
 MANDATORY_FLAGS=-Wall -Wextra -Werror --std=c++98
 
-SOURCES=main.cpp
+SOURCES=${wildcard source/*.cpp}
 
 ${TARGET}: ${SOURCES}
 	@${ECHO} "${YELLOW}Compiling $@...${RESET}"
-	@c++ ${MANDATORY_FLAGS} ${SOURCES} -o $@
+	@c++ ${MANDATORY_FLAGS} -Iinclude ${SOURCES} -o $@
 	@${ECHO} "${GREEN}Done!${RESET}"
 
 fclean:
