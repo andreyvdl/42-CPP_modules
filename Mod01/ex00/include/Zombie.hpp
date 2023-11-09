@@ -21,11 +21,29 @@ class Zombie {
 		Zombie(void);
 		~Zombie(void);
 
-		void announce(void);
 		void setName(std::string name);
 		std::string getName(void);
+
+		/**
+		 * @brief Prints the name of the zombie followed by the phrase
+		 * "BraiiiiiiinnnzzzZ...".
+		 */
+		void announce(void);
 };
+
+/**
+ * @brief Creates a zombie object on the heap.
+ * 
+ * @param name the name of the zombie.
+ * @return A pointer to the zombie.
+ */
 Zombie* newZombie(std::string name);
+
+/**
+ * @brief Create a zombie object on the stack that will call announce.
+ * 
+ * @param name the name of the zombie.
+ */
 void randomChump(std::string name);
 
 #endif
