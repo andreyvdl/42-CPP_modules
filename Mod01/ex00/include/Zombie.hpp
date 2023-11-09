@@ -15,17 +15,17 @@
 
 class Zombie {
 	private:
-		std::sting _name;
+		std::string _name;
 
 	public:
 		Zombie(void);
 		~Zombie(void);
 
 		void announce(void);
-		Zombie* newZombie(std::string name);
-		void randomChump(std::string name);
 		void setName(std::string name);
 		std::string getName(void);
-}
+};
+Zombie* newZombie(std::string name);
+void randomChump(std::string name);
 
 #endif

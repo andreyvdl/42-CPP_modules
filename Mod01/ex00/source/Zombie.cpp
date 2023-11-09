@@ -9,23 +9,26 @@
  */
 
 #include "Zombie.hpp"
+#include "Defines.hpp"
 
 Zombie::Zombie(void) {
-	std::cout << "Zombie created" << std::endl;
+	std::cout << FG_GREEN << "Zombie created" << RESET << std::endl;
 }
 
 Zombie::~Zombie(void) {
-	std::cout << "Zombie destroyed" << std::endl;
+	std::cout << FG_RED << this->getName() << " destroyed" << RESET 
+		<< std::endl;
 }
 
-void Zombie::announce(void) {
-	std::cout << this->getName() << ": BraiiiiiiinnnzzzZ..." << std::endl;
+std::string Zombie::getName(void) {
+	return (this->_name);
 }
 
 void Zombie::setName(std::string name) {
 	this->_name = name;
 }
 
-std::string Zombie::getName(void) {
-	return (this->_name);
+void Zombie::announce(void) {
+	std::cout << FG_CYAN << this->getName() << ": BraiiiiiiinnnzzzZ..."
+		<< RESET << std::endl;
 }
