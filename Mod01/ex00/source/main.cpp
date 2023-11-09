@@ -19,10 +19,6 @@ int main(void) {
 	std::cout << FG_YELLOW
 		<< "MAIN TEST ========================================================="
 		<< RESET << std::endl;
-	/**
-	 * @brief 
-	 * 
-	 */
 	Zombie* zombie = newZombie("Leon");
 	Zombie zombie2;
 
