@@ -11,6 +11,41 @@
 #include "Weapon.class.hpp"
 #include "HumanA.class.hpp"
 #include "HumanB.class.hpp"
+#include "Defines.hpp"
+#include <iomanip>
+
+namespace tests {
+	void metalSlug(void) {
+		Weapon rocket("Rocket Launcher");
+		Weapon heavy("Heavy Machine Gun");
+		Weapon chaser("Enemy Chaser");
+		Weapon laser("Laser Gun");
+		HumanA marco("Marco", rocket);
+		HumanB tarma("Tarma");
+		HumanA eri("Eri", heavy);
+		HumanB fio("Fio");
+
+		std::cout << std::endl << BG_YELLOW << std::setw(21) << RESET
+			<< FG_BD_YELLOW << " METAL SLUG 42 " << RESET << BG_YELLOW
+			<< std::setw(21) << RESET << std::endl;
+
+		tarma.setWeapon(laser);
+		fio.setWeapon(chaser);
+		marco.attack();
+		tarma.attack();
+		eri.attack();
+		fio.attack();
+		std::cout << std::endl;
+		fio.setWeapon(rocket);
+		eri.setWeapon(laser);
+		tarma.setWeapon(heavy);
+		marco.setWeapon(chaser);
+		marco.attack();
+		tarma.attack();
+		eri.attack();
+		fio.attack();
+	}
+}
 
 int main(void)
 {
@@ -30,11 +65,6 @@ int main(void)
 		club.setType("some other type of club");
 		jim.attack();
 	}
+	tests::metalSlug();
 	return (0);
 }
-/*
- * Marco
- * Tarma
- * Eri
- * Fio
- */
