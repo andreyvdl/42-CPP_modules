@@ -14,11 +14,11 @@ Harl::Harl(void) {};
 
 Harl::~Harl(void) {};
 
-void Harl::complain(std::string level)  {
-	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+void Harl::complain(std::string level) {
 	void (Harl::*methods[4])(void) = {&Harl::debug, &Harl::info,
 		&Harl::warning, &Harl::error
 	};
+	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
 	for (int i = 0; i < 4; i++)
 		levels[i] == level ? (this->*methods[i])() : void(0);
