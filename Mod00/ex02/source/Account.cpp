@@ -62,37 +62,41 @@ Account::~Account(void) {
 }
 
 void Account::makeDeposit(int deposit) {
+	int oldAmount = this->_amount;
+
 	Account::_displayTimestamp();
-	std::cout << "index:" << this->_accountIndex << ";"
-		<< "p_amount:" << this->_amount << ";";
 	if (deposit <= 0) {
-		std::cout << "deposit:refused" << std::endl;
+	std::cout << "index:" << this->_accountIndex << ";" << "p_amount:"
+		<< this->_amount << ";" << "deposit:refused" << std::endl;
 		return;
 	}
 	this->_amount += deposit;
 	Account::_totalAmount += deposit;
 	this->_nbDeposits++;
 	Account::_totalNbDeposits++;
-	std::cout << "deposit:" << deposit << ";"
-		<< "amount:" << this->_amount << ";"
-		<< "nb_deposits:" << this->_nbDeposits << std::endl;
+	std::cout << "index:" << this->_accountIndex << ";" << "p_amount:"
+		<< oldAmount << ";" << "deposit:" << deposit << ";" << "amount:"
+		<< this->_amount << ";" << "nb_deposits:" << this->_nbDeposits
+		<< std::endl;
 }
 
 bool Account::makeWithdrawal(int withdrawal) {
+	int oldAmount = this->_amount;
+
 	Account::_displayTimestamp();
-	std::cout << "index:" << this->_accountIndex << ";"
-		<< "p_amount:" << this->_amount << ";";
 	if (withdrawal <= 0 || this->_amount - withdrawal < 0) {
-		std::cout << "withdrawal:refused" << std::endl;
+		std::cout << "index:" << this->_accountIndex << ";" << "p_amount:"
+			<< this->_amount << ";" << "withdrawal:refused" << std::endl;
 		return (false);
 	}
 	this->_amount -= withdrawal;
 	Account::_totalAmount -= withdrawal;
 	this->_nbWithdrawals++;
 	Account::_totalNbWithdrawals++;
-	std::cout << "withdrawal:" << withdrawal << ";"
-		<< "amount:" << this->_amount << ";"
-		<< "nb_withdrawals:" << this->_nbWithdrawals << std::endl;
+	std::cout << "index:" << this->_accountIndex << ";" << "p_amount:"
+		<< oldAmount << ";" << "withdrawal:" << withdrawal << ";"
+		<< "amount:" << this->_amount << ";" << "nb_withdrawals:" <<
+		this->_nbWithdrawals << std::endl;
 	return (true);
 }
 
@@ -108,6 +112,7 @@ void Account::displayStatus(void) const {
 		<< "withdrawals:" << this->_nbWithdrawals << std::endl;
 }
 
+// nao sei como fazer isso sem quebrar a regra da pagina 4 do PDF
 void Account::_displayTimestamp(void) {
 	time_t rawtime;
 	struct tm* timeinfo;
