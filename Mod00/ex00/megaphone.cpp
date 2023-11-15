@@ -22,12 +22,14 @@ int main(int argC, char* argV[]) {
 }
 
 void printArgv(int argC, char** argV) {
+	std::string fullStr = "";
+
 	for (int i = 1; i < argC; ++i) {
 		std::string str = argV[i];
 
 		for (std::string::iterator it = str.begin(); it != str.end(); ++it)
 			*it = static_cast<char>(std::toupper(*it));
-		std::cout << str;
+		fullStr += str;
 	}
-	std::cout << std::endl;
+	std::cout << fullStr << std::endl;
 }
