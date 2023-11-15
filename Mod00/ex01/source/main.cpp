@@ -31,7 +31,7 @@ int main(void) {
 	do {
 		if (std::cin.eof() || std::cin.fail())
 			utils::clearCin();
-		std::cout << "PhoneBook> " << std::flush;
+		std::cout << "PhoneBook> " << std::endl;
 		std::getline(std::cin, cmd);
 		if (cmd == "ADD")
 			book.addContact();

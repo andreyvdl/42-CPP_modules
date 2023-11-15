@@ -80,24 +80,35 @@ namespace utilsPhoneBook {
 			<< RESET << std::endl;
 	}
 
-	void printIndex(int idx) {
-		std::cout << FG_CYAN << "|" << RESET;
-		std::cout << std::setw(10) << idx << FG_CYAN << "|" << RESET
-			<< std::flush;
-	}
+	void printContactLine(int idx, std::string fName, std::string lName,
+		std::string nName) {
+		std::string fCopy;
+		std::string lCopy;
+		std::string nCopy;
 
-	void printContactField(std::string field) {
-		std::string strCopy;
-		int len = 10 - static_cast<int>(field.size());
-
-		if (len < 0) {
-			strCopy = field.substr(0, 9);
-			std::cout << strCopy << "." << FG_CYAN << "|" << RESET << std::flush;
+		if (fName.size() > 10) {
+			fCopy = fName.substr(0, 9);
+			fCopy += ".";
 		}
-		else {
-			std::cout << std::setw(10) << field << FG_CYAN << "|" << RESET
-				<< std::flush;
+		else
+			fCopy = fName;
+		if (lName.size() > 10) {
+			lCopy = lName.substr(0, 9);
+			lCopy += ".";
 		}
+		else
+			lCopy = lName;
+		if (nName.size() > 10) {
+			nCopy = nName.substr(0, 9);
+			nCopy += ".";
+		}
+		else
+			nCopy = nName;
+		std::cout << FG_CYAN << "|" << RESET << std::setw(10) << idx
+			<< FG_CYAN << "|" << RESET << std::setw(10) << fCopy
+			<< FG_CYAN << "|" << RESET << std::setw(10) << lCopy
+			<< FG_CYAN << "|" << RESET << std::setw(10) << nCopy
+			<< FG_CYAN << "|" << RESET << std::endl;
 	}
 
 	void printThisContact(Contact* contact) {
@@ -129,7 +140,7 @@ void PhoneBook::addContact(void) {
 	while (true) {
 		if (std::cin.eof() || std::cin.fail())
 			utilsPhoneBook::clearCin();
-		std::cout << "First name: " << std::flush;
+		std::cout << "First name: " << std::endl;
 		std::getline(std::cin, fName);
 		if (utilsPhoneBook::parseName(fName)) {
 			utilsPhoneBook::clearCin();
@@ -142,7 +153,7 @@ void PhoneBook::addContact(void) {
 	while (true) {
 		if (std::cin.eof() || std::cin.fail())
 			utilsPhoneBook::clearCin();
-		std::cout << "Last name: " << std::flush;
+		std::cout << "Last name: " << std::endl;
 		std::getline(std::cin, lName);
 		if (utilsPhoneBook::parseName(lName)) {
 			utilsPhoneBook::clearCin();
@@ -155,7 +166,7 @@ void PhoneBook::addContact(void) {
 	while (true) {
 		if (std::cin.eof() || std::cin.fail())
 			utilsPhoneBook::clearCin();
-		std::cout << "Nickname: " << std::flush;
+		std::cout << "Nickname: " << std::endl;
 		std::getline(std::cin, nName);
 		if (!nName.empty()) {
 			utilsPhoneBook::clearCin();
@@ -167,7 +178,7 @@ void PhoneBook::addContact(void) {
 	while (true) {
 		if (std::cin.eof() || std::cin.fail())
 			utilsPhoneBook::clearCin();
-		std::cout << "Phone number: " << std::flush;
+		std::cout << "Phone number: " << std::endl;
 		std::getline(std::cin, phoneNbr);
 		if (utilsPhoneBook::parsePhone(phoneNbr)) {
 			utilsPhoneBook::clearCin();
@@ -180,7 +191,7 @@ void PhoneBook::addContact(void) {
 	while (true) {
 		if (std::cin.eof() || std::cin.fail())
 			utilsPhoneBook::clearCin();
-		std::cout << "Your darkest secret: " << std::flush;
+		std::cout << "Your darkest secret: " << std::endl;
 		std::getline(std::cin, dSecret);
 		if (!dSecret.empty()) {
 			utilsPhoneBook::clearCin();
@@ -206,20 +217,20 @@ void PhoneBook::searchContact(void) {
 	utilsPhoneBook::printStartOfTable();
 	if (this->_nbrOfContactsAdded < 8) {
 		for (size_t i = 0; i < this->_nbrOfContactsAdded; ++i) {
-			utilsPhoneBook::printIndex(i);
-			utilsPhoneBook::printContactField(this->_contacts[i].getFirstName());
-			utilsPhoneBook::printContactField(this->_contacts[i].getLastName());
-			utilsPhoneBook::printContactField(this->_contacts[i].getNickname());
-			std::cout << std::endl;
+			utilsPhoneBook::printContactLine(i,
+				this->_contacts[i].getFirstName(),
+				this->_contacts[i].getLastName(),
+				this->_contacts[i].getNickname()
+			);
 		}
 	}
 	else {
 		for (size_t i = 0; i < 8; ++i) {
-			utilsPhoneBook::printIndex(i);
-			utilsPhoneBook::printContactField(this->_contacts[i].getFirstName());
-			utilsPhoneBook::printContactField(this->_contacts[i].getLastName());
-			utilsPhoneBook::printContactField(this->_contacts[i].getNickname());
-			std::cout << std::endl;
+			utilsPhoneBook::printContactLine(i,
+				this->_contacts[i].getFirstName(),
+				this->_contacts[i].getLastName(),
+				this->_contacts[i].getNickname()
+			);
 		}
 	}
 	utilsPhoneBook::printEndOfTable();
@@ -229,7 +240,7 @@ void PhoneBook::searchContact(void) {
 	while (true) {
 		if (std::cin.eof() || std::cin.fail())
 			utilsPhoneBook::clearCin();
-		std::cout << "Select an index: " << std::flush;
+		std::cout << "Select an index: " << std::endl;
 		std::getline(std::cin, idx);
 		if (utilsPhoneBook::parseIndex(idx, this->_nbrOfContactsAdded))
 			break;
