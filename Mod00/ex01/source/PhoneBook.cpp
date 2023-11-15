@@ -81,7 +81,8 @@ namespace utilsPhoneBook {
 	}
 
 	void printContactLine(int idx, std::string fName, std::string lName,
-		std::string nName) {
+		std::string nName
+	) {
 		std::string fCopy;
 		std::string lCopy;
 		std::string nCopy;
