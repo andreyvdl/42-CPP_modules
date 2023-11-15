@@ -21,18 +21,18 @@ namespace utils {
 			<< "]" << std::endl;
 	}
 
+	void bruhMoment(void) {
+		std::cout << BG_BD_RED << "BRUH DO YOU WANT TO DESTROY YOUR COMPUTER?"
+			<< RESET << std::endl;
+	}
+
 	void fileOpeningError(std::string type) {
 		std::cout << FG_RED << "Error: Opening " << type << RESET
 			<< std::endl;
 	}
 
-	void fileReadingError() {
-		std::cout << FG_RED << "Error: Reading file" << RESET
-			<< std::endl;
-	}
-
-	void fileWritingError() {
-		std::cout << FG_RED << "Error: Writing file" << RESET
+	void fileWhileError(std::string type) {
+		std::cout << FG_RED << "Error: While " << type << " file" << RESET
 			<< std::endl;
 	}
 
@@ -73,6 +73,10 @@ int main(int argC, char** argV) {
 		}
 		return (argC);
 	}
+	if (std::string(argV[2]) == "") {
+		utils::bruhMoment();
+		return (-1);
+	}
 
 	status = searchAndReplaceIt(argV[1], argV[2], argV[3]);
 	return (status);
@@ -98,15 +102,18 @@ int searchAndReplaceIt(std::string file, std::string find, std::string sub) {
 
 		std::getline(input, line);
 		if (input.eof() == false && input.fail()) {
-			utils::fileReadingError();
+			utils::fileWhileError("reading");
 			input.close();
 			output.close();
 			return (6);
 		}
 		utils::replace(line, find, sub);
-		output << line << std::endl;
+		if (input.eof() == false)
+			output << line << std::endl;
+		else
+			output << line;
 		if (output.fail()) {
-			utils::fileWritingError();
+			utils::fileWhileError("writing");
 			input.close();
 			output.close();
 			return (7);
