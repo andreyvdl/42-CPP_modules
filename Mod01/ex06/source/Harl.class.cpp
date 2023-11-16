@@ -22,16 +22,12 @@ void Harl::complain(std::string level) {
 		if (levels[i] == level) break;
 	switch (i) {
 		case 0:
-			std::cout << "[ DEBUG ]" << std::endl;
 			this->debug();
 		case 1:
-			std::cout << "[ INFO ]" << std::endl;
 			this->info();
 		case 2:
-			std::cout << "[ WARNING ]" << std::endl;
 			this->warning();
 		case 3:
-			std::cout << "[ ERROR ]" << std::endl;
 			this->error();
 			break;
 		default:
@@ -41,20 +37,23 @@ void Harl::complain(std::string level) {
 	}
 }
 
+#define CRLF "\r\n"
 void Harl::debug(void) {
-	std::cout << "I thought I fixed that." << std::endl;
+	std::cout << "[ DEBUG ]"CRLF << "I thought I fixed that." << std::endl;
 }
 
 void Harl::info(void) {
-	std::cout
+	std::cout << "[ INFO ]"CRLF
 		<< "No one told me so I was forced to assume which way to do that."
 		<< std::endl;
 }
 
 void Harl::warning(void) {
-	std::cout << "You must have the wrong version." << std::endl;
+	std::cout << "[ WARNING ]"CRLF
+		<< "You must have the wrong version." << std::endl;
 }
 
 void Harl::error(void) {
-	std::cout << "I can't make that a priority right now." << std::endl;
+	std::cout << "[ ERROR ]"CRLF
+		<< "I can't make that a priority right now." << std::endl;
 }
