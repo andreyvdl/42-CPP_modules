@@ -11,11 +11,12 @@
 #include <iostream>
 #include <fstream>
 #include "Defines.hpp"
+#define CRLF "\r\n"
 
 namespace utils {
 	void argNumError(std::string msg) {
-		std::cout << FG_RED << "Error: " << msg << RESET << std::endl;
-		std::cout << "e.g. " << FG_GREEN << "./Sed.exec " << FG_UL_RED
+		std::cout << FG_RED << "Error: " << msg << RESET << CRLF
+			<< "e.g. " << FG_GREEN << "./Sed.exec " << FG_UL_RED
 			<< "/your/file/path" << RESET << " " << FG_UL_RED << "searchStr"
 			<< RESET << " [" << FG_UL_RED << "replaceStr" << RESET
 			<< "]" << std::endl;
@@ -49,6 +50,11 @@ namespace utils {
 			idx = found + sub.size();
 		}
 	}
+
+	void closeFiles(std::ifstream& input, std::ofstream& output) {
+		input.close();
+		output.close();
+	}
 }
 
 int searchAndReplaceIt(std::string file, std::string find, std::string sub);
@@ -77,21 +83,22 @@ int main(int argC, char** argV) {
 		utils::bruhMoment();
 		return (-1);
 	}
-
 	status = searchAndReplaceIt(argV[1], argV[2], argV[3]);
 	return (status);
 }
 
 int searchAndReplaceIt(std::string file, std::string find, std::string sub) {
-	std::ifstream input(file.c_str(), std::ifstream::in);
+	std::ifstream input(file.c_str(), input.in);
 
 	if (input.fail() || input.is_open() == false) {
 		utils::fileOpeningError("input file");
 		return (4);
 	}
+
 	std::ofstream output((file + ".replace").c_str(),
-		std::ofstream::out | std::ofstream::trunc
+		output.out | output.trunc
 	);
+
 	if (output.fail() || output.is_open() == false) {
 		utils::fileOpeningError("output file");
 		input.close();
@@ -103,8 +110,7 @@ int searchAndReplaceIt(std::string file, std::string find, std::string sub) {
 		std::getline(input, line);
 		if (input.eof() == false && input.fail()) {
 			utils::fileWhileError("reading");
-			input.close();
-			output.close();
+			utils::closeFiles(input, output);
 			return (6);
 		}
 		utils::replace(line, find, sub);
@@ -114,12 +120,10 @@ int searchAndReplaceIt(std::string file, std::string find, std::string sub) {
 			output << line;
 		if (output.fail()) {
 			utils::fileWhileError("writing");
-			input.close();
-			output.close();
+			utils::closeFiles(input, output);
 			return (7);
 		}
 	}
-	input.close();
-	output.close();
+	utils::closeFiles(input, output);
 	return (0);
 }
