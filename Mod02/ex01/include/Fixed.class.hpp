@@ -4,7 +4,7 @@
  * @brief File for the Fixed class declaration.
  * @version 1
  * @date 2023-11-17
- * 
+ *
  * @copyright Copyright (c) 2023
  */
 
