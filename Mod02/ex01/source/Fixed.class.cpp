@@ -45,7 +45,8 @@ Fixed::~Fixed(void) {
 
 Fixed& Fixed::operator=(const Fixed& that) {
 	std::cout << "Assignation operator called" << std::endl;
-	_fixedNbrValue = that.getRawBits();
+	if (this != &that)
+		_fixedNbrValue = that.getRawBits();
 	return (*this);
 }
 
