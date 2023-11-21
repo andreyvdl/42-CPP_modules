@@ -64,12 +64,13 @@ Fixed Fixed::operator/(Fixed const& that) const {
 
 Fixed Fixed::operator*(Fixed const& that) const {
 	float total = this->toFloat() * that.toFloat();
-	
+
 	return (Fixed(total / FRACTIONAL_FACTOR(_fractionalBits)));
 }
 
-/*
 Fixed& Fixed::operator++(void) {
-
+	_fixedNbrValue += FRACTIONAL_FACTOR(_fractionalBits);
+	return (*this);
 }
+/*
 */
