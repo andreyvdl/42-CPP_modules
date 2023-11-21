@@ -36,3 +36,7 @@ Fixed const& Fixed::min(Fixed const& a, Fixed const& b) {
 	return (a > b ? b : a);
 }
 
+Fixed& Fixed::max(Fixed& a, Fixed& b) {
+	return (a > b ? a : b);
+}
+
