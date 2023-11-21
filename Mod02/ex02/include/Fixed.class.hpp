@@ -57,8 +57,8 @@ class Fixed {
 		// min max
 		static Fixed& min(Fixed& a, Fixed& b);
 		static Fixed& max(Fixed& a, Fixed& b);
-		static const Fixed& min(Fixed const& a, Fixed const& b);
-		static const Fixed& max(Fixed const& a, Fixed const& b);
+		static Fixed const& min(Fixed const& a, Fixed const& b);
+		static Fixed const& max(Fixed const& a, Fixed const& b);
 };
 
 std::ostream& operator<<(std::ostream& oStream, Fixed const& that);
