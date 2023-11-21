@@ -72,5 +72,11 @@ Fixed& Fixed::operator++(void) {
 	_fixedNbrValue += FRACTIONAL_FACTOR(_fractionalBits);
 	return (*this);
 }
-/*
-*/
+
+Fixed Fixed::operator++(int) {
+	Fixed tmp(*this);
+
+	++(*this);
+	return (tmp);
+}
+
