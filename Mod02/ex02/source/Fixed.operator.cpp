@@ -63,11 +63,11 @@ Fixed Fixed::operator/(Fixed const& that) const {
 }
 
 Fixed Fixed::operator*(Fixed const& that) const {
-	return (Fixed(this->toFloat() / that.toFloat()));
+	return (Fixed(this->toFloat() * that.toFloat()));
 }
 
 Fixed& Fixed::operator++(void) {
-	_fixedNbrValue += FRACTIONAL_FACTOR(_fractionalBits);
+	_fixedNbrValue += 1; // 🤡
 	return (*this);
 }
 
@@ -79,7 +79,7 @@ Fixed Fixed::operator++(int) {
 }
 
 Fixed& Fixed::operator--(void) {
-	_fixedNbrValue -= FRACTIONAL_FACTOR(_fractionalBits);
+	_fixedNbrValue -= 1; // 🤡
 	return (*this);
 }
 
