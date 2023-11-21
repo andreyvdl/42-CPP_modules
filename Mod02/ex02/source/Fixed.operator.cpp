@@ -55,18 +55,20 @@ Fixed Fixed::operator-(Fixed const& that) const {
 }
 
 Fixed Fixed::operator/(Fixed const& that) const {
-	if (that.toFloat() == 0.000000000) {
+	if (that.toFloat() == 0.000000000f) {
 		std::cout << "WARNING YOUR PC WILL EXPLODE!!!!!!!!!!!!!!" << std::endl;
 		return (Fixed(0));
 	}
 	return (Fixed(this->toFloat() / that.toFloat()));
 }
 
-/*
 Fixed Fixed::operator*(Fixed const& that) const {
-	return (Fixed(_fixedNbrValue * that.getRawBits()));
+	float total = this->toFloat() * that.toFloat();
+	
+	return (Fixed(total / FRACTIONAL_FACTOR(_fractionalBits)));
 }
 
+/*
 Fixed& Fixed::operator++(void) {
 
 }
