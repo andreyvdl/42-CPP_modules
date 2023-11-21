@@ -47,11 +47,11 @@ bool Fixed::operator!=(Fixed const& that) const {
 }
 
 Fixed Fixed::operator+(Fixed const& that) const {
-	return (Fixed(this->toFloat() + that.toFloat()));
+	return (Fixed(toFloat() + that.toFloat()));
 }
 
 Fixed Fixed::operator-(Fixed const& that) const {
-	return (Fixed(this->toFloat() - that.toFloat()));
+	return (Fixed(toFloat() - that.toFloat()));
 }
 
 Fixed Fixed::operator/(Fixed const& that) const {
@@ -59,11 +59,11 @@ Fixed Fixed::operator/(Fixed const& that) const {
 		std::cout << "WARNING YOUR PC WILL EXPLODE!!!!!!!!!!!!!!" << std::endl;
 		return (Fixed(0));
 	}
-	return (Fixed(this->toFloat() / that.toFloat()));
+	return (Fixed(toFloat() / that.toFloat()));
 }
 
 Fixed Fixed::operator*(Fixed const& that) const {
-	return (Fixed(this->toFloat() * that.toFloat()));
+	return (Fixed(toFloat() * that.toFloat()));
 }
 
 Fixed& Fixed::operator++(void) {
