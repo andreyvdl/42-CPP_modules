@@ -27,3 +27,9 @@ float Fixed::toFloat(void) const {
 int Fixed::toInt(void) const {
 	return ((_fixedNbrValue & EXPONENT_BITWISE) >> _fractionalBits);
 }
+
+Fixed& Fixed::min(Fixed& a, Fixed& b) {
+	return (a > b ? b : a);
+}
+
+
