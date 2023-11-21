@@ -10,6 +10,8 @@
 
 #include "Fixed.class.hpp"
 
+Fixed::~Fixed(void) {}
+
 Fixed::Fixed(void) : _fixedNbrValue(0) {}
 
 Fixed::Fixed(Fixed const& that) {
@@ -24,5 +26,3 @@ Fixed::Fixed(int const raw) {
 Fixed::Fixed(float const raw) {
 	_fixedNbrValue = roundf(raw * (1 << _fractionalBits));
 }
-
-Fixed::~Fixed(void) {}
