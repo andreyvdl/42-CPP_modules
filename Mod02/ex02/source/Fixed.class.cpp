@@ -10,7 +10,7 @@
 
 #include "Fixed.class.hpp"
 
-const int Fixed::_fractionalBits = 8;
+int const Fixed::_fractionalBits = 8;
 
 int Fixed::getRawBits(void) const {
 	return (_fixedNbrValue);
