@@ -12,6 +12,11 @@
 #ifndef FIXED_CLASS_HPP
 # define FIXED_CLASS_HPP
 # include <iostream>
+# include <cmath>
+# define SIGNAL_BITWISE (0b1U << 31)
+# define EXPONENT_BITWISE (0b11111111111111111111111 << 8)
+# define FRACTIONAL_BITWISE 0b11111111
+# define FRACTIONAL_FACTOR(bits) (0b1 << bits)
 
 class Fixed {
 	private:
