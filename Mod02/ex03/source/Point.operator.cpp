@@ -22,11 +22,11 @@ Point& Point::operator=(Point const& that) {
 bool Point::operator==(Point const& that) const {
 	if (this == &that)
 		return (true);
-	return (getX() == that.getX() && getY() == that.getY() ? true : false);
+	return (getX() == that.getX() && getY() == that.getY());
 }
 
-bool Point::operator!=(Point const& that) const {
-	if (this == &that)
-		return (false);
-	return (getX() != that.getX() || getY() != that.getY() ? true : false);
-}
+// bool Point::operator!=(Point const& that) const {
+// 	if (this == &that)
+// 		return (false);
+// 	return (getX() != that.getX() || getY() != that.getY());
+// }

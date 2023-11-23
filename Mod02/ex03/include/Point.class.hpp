@@ -28,9 +28,7 @@ class Point {
 		Fixed const& getX(void) const;
 		Fixed const& getY(void) const;
 		bool operator==(Point const& that) const;
-		bool operator!=(Point const& that) const;
+		// bool operator!=(Point const& that) const;
 };
-
-bool bsp(Point const a, Point const b, Point const c, Point const point);
 
 #endif
