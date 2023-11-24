@@ -22,9 +22,9 @@
 		<td>Module 0</td>
 		<td>100/100</td>
 		<td>Module 1</td>
-		<td>0/100</td>
+		<td>100/100</td>
 		<td>Module 2</td>
-		<td>0/100</td>
+		<td>100/100</td>
 		<td>Module 3</td>
 		<td>0/100</td>
 		<td>Module 4</td>
