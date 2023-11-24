@@ -24,9 +24,3 @@ bool Point::operator==(Point const& that) const {
 		return (true);
 	return (getX() == that.getX() && getY() == that.getY());
 }
-
-// bool Point::operator!=(Point const& that) const {
-// 	if (this == &that)
-// 		return (false);
-// 	return (getX() != that.getX() || getY() != that.getY());
-// }

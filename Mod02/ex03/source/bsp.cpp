@@ -13,6 +13,29 @@
 
 bool triangleIsInvalid(Point const a, Point const b, Point const c,
 	Point const p
+);
+float heronFormula(Point const a1, Point const b1, Point const c1);
+Fixed getHeight(Point const a2, Point const b2);
+
+bool bsp(Point const a, Point const b, Point const c, Point const point) {
+	Fixed triangleArea;
+	Fixed subArea1;
+	Fixed subArea2;
+	Fixed subArea3;
+
+	if (triangleIsInvalid(a, b, c, point))
+		return (false);
+	triangleArea = Fixed(heronFormula(a, b, c));
+	subArea1 = Fixed(heronFormula(a, b, point));
+	subArea2 = Fixed(heronFormula(a, c, point));
+	subArea3 = Fixed(heronFormula(b, c, point));
+	if (triangleArea != (subArea1 + subArea2 + subArea3))
+		return (false);
+	return (true);
+}
+
+bool triangleIsInvalid(Point const a, Point const b, Point const c,
+	Point const p
 ) {
 	if ((p == a || p == b || p == c) || (a == b || a == c || b == c))
 		return (true);
@@ -23,43 +46,15 @@ bool triangleIsInvalid(Point const a, Point const b, Point const c,
 	return (false);
 }
 
-Fixed triangleHeight(Point const a, Point const b, Point const c) {
-	return (Fixed::max(a.getY(), Fixed::max(b.getY(), c.getY()))
-		- Fixed::min(a.getY(), Fixed::min(b.getY(), c.getY()))
-	);
+float heronFormula(Point const a1, Point const b1, Point const c1) {
+	Fixed sqrArea;
+	// A = 0.5(|1x(2y - 3y) + 2x(3y - 1y) + 3x(1y - 2y)|)
+
+	sqrArea = (a1.getX() * getHeight(b1, c1) + b1.getX() * getHeight(c1, a1)
+		+ c1.getX() * getHeight(a1, b1));
+	return (fabs(sqrArea.toFloat()) * 0.5f);
 }
 
-Fixed triangleWidth(Point const a, Point const b, Point const c) {
-	return (Fixed::max(a.getX(), Fixed::max(b.getX(), c.getX()))
-		- Fixed::min(a.getX(), Fixed::min(b.getX(), c.getX()))
-	);
-}
-
-bool bsp(Point const a, Point const b, Point const c, Point const point) {
-	Fixed triangleArea;
-	Fixed subArea1;
-	Fixed subArea2;
-	Fixed subArea3;
-
-	if (triangleIsInvalid(a, b, c, point))
-		return (false);
-	triangleArea = Fixed(static_cast<const float>(fabs()));
-	// triangleArea = (triangleHeight(a, b, c) * triangleWidth(a, b, c))
-	// 	/ Fixed(2.0f);
-	// subArea1 = (triangleHeight(a, b, point) * triangleWidth(a, b, point))
-	// 	/ Fixed(2.0f);
-	// subArea2 = (triangleHeight(a, c, point) * triangleWidth(a, c, point))
-	// 	/ Fixed(2.0f);
-	// subArea3 = (triangleHeight(b, point, c) * triangleWidth(b, point, c))
-	// 	/ Fixed(2.0f);
-	// std::cout << "triangleArea: " << triangleArea << std::endl;
-	// std::cout << "subArea1: " << subArea1 << std::endl;
-	// std::cout << "subArea2: " << subArea2 << std::endl;
-	// std::cout << "subArea3: " << subArea3 << std::endl;
-	// std::cout << "total sub: " << subArea1 + subArea2 + subArea3 << std::endl;
-	// if (subArea1 + subArea2 + subArea3 != triangleArea 
-	// 	&& subArea1 + subArea2 + (subArea3 / Fixed(2.0f)) != triangleArea
-	// )
-	// 	return (false);
-	return (true);
+Fixed getHeight(Point const a2, Point const b2) {
+	return (Fixed(a2.getY().toFloat() - b2.getY().toFloat()));
 }
