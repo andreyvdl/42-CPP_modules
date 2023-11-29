@@ -11,12 +11,12 @@
 #include "ClapTrap.class.hpp"
 #include "defines.hpp"
 
-ClapTrap::ClapTrap(void) : _name("NoName"), _hp(10), _ep(10), _attack(0) {
+ClapTrap::ClapTrap(void) : _name("NoName"), _hp(10), _ep(10), _damage(0) {
 	std::cout << FG_GREEN "ClapTrap default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hp(10), _ep(10),
-_attack(0) {
+_damage(0) {
 	std::cout << FG_GREEN "ClapTrap name constructor called" << std::endl;
 }
 

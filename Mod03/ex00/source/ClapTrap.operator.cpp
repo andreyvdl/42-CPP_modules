@@ -17,7 +17,7 @@ ClapTrap& ClapTrap::operator=(ClapTrap const& that) {
 		_name = that._name;
 		_hp = that._hp;
 		_ep = that._ep;
-		_attack = that._attack;
+		_damage = that._damage;
 	}
 	return (*this);
 }
