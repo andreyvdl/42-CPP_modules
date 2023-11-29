@@ -6,11 +6,11 @@
 #    By: adantas- <adantas-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 17:18:00 by adantas-          #+#    #+#              #
-#    Updated: 2023/11/24 17:39:40 by adantas-         ###   ########.fr        #
+#    Updated: 2023/11/29 16:12:23 by adantas-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-TARGET=ClapTrap
+TARGET=ScavTrap
 ECHO=/usr/bin/echo -e
 YELLOW=\033[1;33m
 GREEN=\033[1;32m
