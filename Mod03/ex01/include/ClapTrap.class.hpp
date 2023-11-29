@@ -13,10 +13,8 @@
 # define CLAPTRAP_CLASS_H
 # include <iostream>
 
-// hp = hit points
-// ep = energy points
 class ClapTrap {
-	private:
+	protected:
 		std::string _name;
 		int _hp;
 		int _ep;
