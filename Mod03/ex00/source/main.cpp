@@ -41,14 +41,14 @@ namespace tests {
 }
 
 int main(void) {
-	ClapTrap claptrap("clap trap");
+	ClapTrap claptrap("Roland");
 	ClapTrap cl4p_tp;
 	ClapTrap cl4p_tp2(claptrap);
 
 	claptrap.setDamage(2);
 	cl4p_tp.setDamage(3);
 	cl4p_tp2.setDamage(1);
-	cl4p_tp2.setName("Scrap trap");
+	cl4p_tp2.setName("Lilith");
 	tests::fight(cl4p_tp, cl4p_tp2);
 	claptrap.setHitPoints(10);
 	cl4p_tp2.setHitPoints(10);
