@@ -17,39 +17,44 @@ void ClapTrap::attack(const std::string& target) {
 			std::endl;
 		return;
 	}
+	if (_hp < 1) {
+		std::cout << FG_BLUE "ClapTrap " << _name << " is already dead!" <<
+			std::endl;
+		return;
+	}
 	std::cout << FG_MAGENTA "ClapTrap " << _name << " attacks " << target <<
 		", causing " << _damage << " points of damage!" << std::endl;
 	_ep -= 1;
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
-	if (_hp == 0) {
+	if (_hp < 1) {
 		std::cout << FG_BLUE "ClapTrap " << _name << " is already dead!" <<
 			std::endl;
 		return;
 	}
 	std::cout << FG_MAGENTA "ClapTrap " << _name << " takes " << amount <<
 		" points of damage!" << std::endl;
-	if (amount >= static_cast<unsigned int>(_hp))
-		std::cout << FG_RED "ClapTrap " << _name << " is dead!" << std::endl;
 	_hp -= amount;
+	if (_hp < 1)
+		std::cout << FG_RED "ClapTrap " << _name << " is dead!" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-	if (_hp == 0) {
+	if (_hp < 1) {
 		std::cout << FG_BLUE "ClapTrap " << _name << " is already dead!" <<
 			std::endl;
 		return;
 	}
-	else if (_ep == 0) {
+	if (_ep == 0) {
 		std::cout << FG_BLUE "ClapTrap " << _name << " is out of energy!" <<
 			std::endl;
 		return;
 	}
 	std::cout << FG_MAGENTA "ClapTrap " << _name << " is repaired with " <<
 		amount << " points of energy!" << std::endl;
-	_ep -= 1;
 	_hp += amount;
+	_ep -= 1;
 }
 
 int ClapTrap::getHitPoints(void) const {
