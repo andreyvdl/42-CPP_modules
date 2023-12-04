@@ -6,11 +6,11 @@
 #    By: adantas- <adantas-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 17:18:00 by adantas-          #+#    #+#              #
-#    Updated: 2023/11/30 13:12:28 by adantas-         ###   ########.fr        #
+#    Updated: 2023/12/04 11:26:29 by adantas-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-TARGET=FragTrap
+TARGET=DiamondTrap
 ECHO=/usr/bin/echo -e
 YELLOW=\033[1;33m
 GREEN=\033[1;32m
