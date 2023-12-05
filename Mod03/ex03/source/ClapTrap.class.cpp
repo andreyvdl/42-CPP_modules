@@ -13,46 +13,48 @@
 
 void ClapTrap::attack(const std::string& target) {
 	if (_ep == 0) {
-		std::cout << FG_BLUE "ClapTrap " << _name << " is out of energy!" <<
-			std::endl;
+		std::cout << FG_BLUE "ClapTrap " << _name << " is out of energy!" RESET
+		<< std::endl;
 		return;
 	}
 	if (_hp < 1) {
-		std::cout << FG_BLUE "ClapTrap " << _name << " is already dead!" <<
-			std::endl;
+		std::cout << FG_BLUE "ClapTrap " << _name << " is already dead!" RESET
+			<< std::endl;
 		return;
 	}
 	std::cout << FG_MAGENTA "ClapTrap " << _name << " attacks " << target <<
-		", causing " << _damage << " points of damage!" << std::endl;
+		", causing " << _damage << " points of damage!" RESET << std::endl;
 	_ep -= 1;
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
 	if (_hp < 1) {
-		std::cout << FG_BLUE "ClapTrap " << _name << " is already dead!" <<
-			std::endl;
+		std::cout << FG_BLUE "ClapTrap " << _name << " is already dead!" RESET
+			<< std::endl;
 		return;
 	}
-	std::cout << FG_MAGENTA "ClapTrap " << _name << " takes " << amount <<
-		" points of damage!" << std::endl;
+	std::cout << FG_MAGENTA "ClapTrap " << _name << " takes " << amount
+		<< " points of damage!" RESET << std::endl;
 	_hp -= amount;
-	if (_hp < 1)
-		std::cout << FG_RED "ClapTrap " << _name << " is dead!" << std::endl;
+	if (_hp < 1) {
+		std::cout << FG_RED "ClapTrap " << _name << " is dead!" RESET 
+			<< std::endl;
+	}
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
 	if (_hp < 1) {
-		std::cout << FG_BLUE "ClapTrap " << _name << " is already dead!" <<
-			std::endl;
+		std::cout << FG_BLUE "ClapTrap " << _name << " is already dead!" RESET
+			<< std::endl;
 		return;
 	}
 	if (_ep == 0) {
-		std::cout << FG_BLUE "ClapTrap " << _name << " is out of energy!" <<
-			std::endl;
+		std::cout << FG_BLUE "ClapTrap " << _name << " is out of energy!" RESET
+			<< std::endl;
 		return;
 	}
 	std::cout << FG_MAGENTA "ClapTrap " << _name << " is repaired with " <<
-		amount << " points of energy!" << std::endl;
+		amount << " points of energy!" RESET << std::endl;
 	_hp += amount;
 	_ep -= 1;
 }

@@ -19,9 +19,6 @@
 class DiamondTrap: public FragTrap, public ScavTrap {
 	private:
 		std::string _name;
-		FragTrap::_hp;
-		ScavTrap::_ep;
-		FragTrap::_damage;
 
 	public:
 		DiamondTrap(void);
@@ -30,14 +27,11 @@ class DiamondTrap: public FragTrap, public ScavTrap {
 		~DiamondTrap(void);
 		DiamondTrap& operator=(DiamondTrap const& that);
 
-		// overload for printing right name
 		void attack(const std::string& target);
-		void guardGate(void);
-		void highFivesGuys(void);
-
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
 		void whoAmI(void);
+
+		std::string getDiamondName(void) const;
+		void setDiamondName(std::string name);
 };
 
 #endif

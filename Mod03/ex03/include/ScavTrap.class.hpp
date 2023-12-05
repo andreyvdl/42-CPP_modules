@@ -14,7 +14,10 @@
 # include <iostream>
 # include "ClapTrap.class.hpp"
 
-class ScavTrap: public ClapTrap {
+class ScavTrap: virtual public ClapTrap {
+	protected:
+		static const int _defaultEp = 50;
+
 	public:
 		ScavTrap(void);
 		ScavTrap(std::string name);
@@ -23,8 +26,6 @@ class ScavTrap: public ClapTrap {
 		ScavTrap& operator=(ScavTrap const& that);
 
 		void attack(const std::string& target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
 		void guardGate(void);
 };
 

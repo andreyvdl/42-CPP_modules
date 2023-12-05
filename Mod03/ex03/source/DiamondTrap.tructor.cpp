@@ -17,15 +17,21 @@ DiamondTrap::DiamondTrap(void): FragTrap(), ScavTrap() {
 	std::cout << BG_GREEN "DiamondTrap default constructor called." RESET
 		<< std::endl;
 	_name = "noName";
-	ClapTrap::_name = "noName" + SUFFIX_NAME;
-	_hp = FragTrap::_hp;
-	_ep = ScavTrap::_ep;
-	_damage = FragTrap::_damage;
+	ClapTrap::_name = std::string("noName") + SUFFIX_NAME;
+	_hp = static_cast<int>(FragTrap::_defaultHp);
+	_ep = static_cast<int>(ScavTrap::_defaultEp);
+	_damage = static_cast<int>(FragTrap::_defaultDamage);
 }
 
-DiamondTrap::DiamondTrap(std::string name): FragTrap(name), ScavTrap(name) {
+DiamondTrap::DiamondTrap(std::string name): ClapTrap(name + SUFFIX_NAME),
+FragTrap(name + SUFFIX_NAME), ScavTrap(name + SUFFIX_NAME) {
 	std::cout << BG_GREEN "DiamondTrap name constructor called." RESET
 		<< std::endl;
+	_name = name;
+	ClapTrap::_name = name + SUFFIX_NAME;
+	_hp = static_cast<int>(FragTrap::_defaultHp);
+	_ep = static_cast<int>(ScavTrap::_defaultEp);
+	_damage = static_cast<int>(FragTrap::_defaultDamage);
 }
 
 DiamondTrap::DiamondTrap(DiamondTrap const& that) {

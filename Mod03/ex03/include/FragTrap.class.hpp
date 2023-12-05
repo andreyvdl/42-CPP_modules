@@ -14,7 +14,11 @@
 # include <iostream>
 # include "ClapTrap.class.hpp"
 
-class FragTrap: public ClapTrap {
+class FragTrap: virtual public ClapTrap {
+	protected:
+		static const int _defaultHp = 100;
+		static const int _defaultDamage = 30;
+
 	public:
 		FragTrap(void);
 		FragTrap(std::string name);
@@ -22,9 +26,6 @@ class FragTrap: public ClapTrap {
 		~FragTrap(void);
 		FragTrap& operator=(FragTrap const& that);
 
-		void attack(const std::string& target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
 		void highFivesGuys(void);
 };
 
