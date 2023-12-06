@@ -4,7 +4,7 @@
  * @brief File with the constructors and destructors of the ScavTrap class.
  * @version 1
  * @date 2023-11-29
- * 
+ *
  * @copyright Copyright (c) 2023
  */
 

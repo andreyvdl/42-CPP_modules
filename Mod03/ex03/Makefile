@@ -22,7 +22,7 @@ SOURCES=${wildcard source/*.cpp}
 
 ${TARGET}: ${SOURCES}
 	@${ECHO} "${YELLOW}Compiling $@...${RESET}"
-	@c++ ${MANDATORY_FLAGS} -Iinclude ${SOURCES} -o $@
+	@c++ ${MANDATORY_FLAGS} -Wno-shadow -Wshadow -Iinclude ${SOURCES} -o $@
 	@${ECHO} "${GREEN}Done!${RESET}"
 
 fclean:
