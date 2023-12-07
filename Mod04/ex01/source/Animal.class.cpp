@@ -10,6 +10,33 @@
 
 #include "Animal.class.hpp"
 
+/* TRUCTORS ================================================================= */
+
+Animal::Animal(void): _type("Unknown") {
+	std::cout << "Animal default constructor called" << std::endl;
+}
+
+Animal::Animal(Animal const& that) {
+	std::cout << "Animal copy constructor called" << std::endl;
+	*this = that;
+}
+
+Animal::~Animal(void) {
+	std::cout << "Animal destructor called" << std::endl;
+}
+
+/* OPERATORS ================================================================ */
+
+Animal& Animal::operator=(Animal const& that) {
+	std::cout << "Animal assignation operator called" << std::endl;
+	if (this != &that) {
+		_type = that._type;
+	}
+	return (*this);
+}
+
+/* METHODS ================================================================== */
+
 void Animal::makeSound(void) const {
 	std::cout << "* " << _type << " makes an animal sound *" << std::endl;
 }

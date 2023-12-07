@@ -14,70 +14,39 @@
 #include "WrongAnimal.class.hpp"
 #include "WrongCat.class.hpp"
 
+#define MAX_ANIMALS 4
 namespace tests
 {
-	void wrongTest(void) {
-		const WrongAnimal* meta = new WrongAnimal();
-		const Animal* j = new Dog();
-		const WrongAnimal* i = new WrongCat();
-
-		std::cout << j->getType() << " " << std::endl;
-		std::cout << i->getType() << " " << std::endl;
-		i->makeSound();
-		j->makeSound();
-		meta->makeSound();
-
-		delete meta;
-		delete j;
-		delete i;
-	}
-
-	void copyTest(void) {
-		const Animal* j = new Dog();
-		const Animal* i = new Animal(*j);
-
-		std::cout << j->getType() << " " << std::endl;
-		std::cout << i->getType() << " " << std::endl;
-		i->makeSound();
-		j->makeSound();
-
-		delete j;
-		delete i;
-	}
-
-	void operatorTest(void) {
-		const Animal j = Dog();
-		Animal i;
-
-		i = j;
-		std::cout << j.getType() << " " << std::endl;
-		std::cout << i.getType() << " " << std::endl;
-		i.makeSound();
-		j.makeSound();
-	}
+	
 }
 
 int main(void)
 {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	std::string const food[2] = {"steak", "fish"};
+	Animal* animals[MAX_ANIMALS];
 
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
-
-	delete meta;
-	delete j;
-	delete i;
-	std::cout << std::endl;
-	tests::wrongTest();
-	std::cout << std::endl;
-	tests::copyTest();
-	std::cout << std::endl;
-	tests::operatorTest();
-	std::cout << std::endl;
-	return 0;
+	for (int i = 0; i < MAX_ANIMALS; i++) {
+		if (i < MAX_ANIMALS / 2) {
+			animals[i] = new Dog();
+		}
+		else {
+			animals[i] = new Cat();
+		}
+	}
+	for (int i = 0; i < MAX_ANIMALS; i++) {
+		if (i < MAX_ANIMALS / 2) {
+			animals[i]->getBrain()->setIdea(food[0], 0);
+		}
+		else {
+			animals[i]->getBrain()->setIdea(food[1], 0);
+		}
+	}
+	for (int i = 0; i < MAX_ANIMALS; i++) {
+		std::cout << animals[i]->getBrain()->getIdea(0) << std::endl;
+	}
+	tests::testCopy(animals);
+	for (int i = 0; i < MAX_ANIMALS; i++) {
+		delete animals[i];
+	}
+	return (0);
 }

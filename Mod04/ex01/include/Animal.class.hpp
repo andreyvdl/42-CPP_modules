@@ -12,6 +12,7 @@
 #ifndef ANIMAL_CLASS_HPP
 # define ANIMAL_CLASS_HPP
 # include <iostream>
+# include "Brain.class.hpp"
 
 class Animal {
 	protected:
@@ -25,6 +26,7 @@ class Animal {
 
 		virtual void makeSound(void) const;
 		std::string getType(void) const;
+		virtual Brain* getBrain(void) const = 0;
 };
 
 #endif

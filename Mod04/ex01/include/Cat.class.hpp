@@ -12,8 +12,12 @@
 #ifndef CAT_CLASS_HPP
 # define CAT_CLASS_HPP
 # include "Animal.class.hpp"
+# include "Brain.class.hpp"
 
 class Cat: public Animal{
+	private:
+		Brain* _brain;
+
 	public:
 		Cat(void);
 		Cat(Cat const& that);
@@ -21,6 +25,7 @@ class Cat: public Animal{
 		Cat& operator=(Cat const& that);
 
 		void makeSound(void) const;
+		Brain* getBrain(void) const;
 };
 
 #endif

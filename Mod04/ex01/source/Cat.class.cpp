@@ -10,6 +10,41 @@
 
 #include "Cat.class.hpp"
 
+/* TRUCTORS ================================================================= */
+
+Cat::Cat(void): Animal() {
+	std::cout << "Cat default constructor called" << std::endl;
+	_type = "Cat";
+	_brain = new Brain();
+}
+
+Cat::Cat(Cat const& that) {
+	std::cout << "Cat copy constructor called" << std::endl;
+	*this = that;
+}
+
+Cat::~Cat(void) {
+	std::cout << "Cat destructor called" << std::endl;
+	delete _brain;
+}
+
+/* OPERATORS ================================================================ */
+
+Cat& Cat::operator=(Cat const& that) {
+	std::cout << "Cat assignation operator called" << std::endl;
+	if (this != &that) {
+		_type = that._type;
+		*_brain = *(that._brain);
+	}
+	return (*this);
+}
+
+/* METHODS ================================================================== */
+
 void Cat::makeSound(void) const {
 	std::cout << "MIAU!" << std::endl;
+}
+
+Brain* Cat::getBrain(void) const {
+	return (_brain);
 }
