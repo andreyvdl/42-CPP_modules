@@ -6,11 +6,11 @@
 #    By: adantas- <adantas-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 16:50:55 by adantas-          #+#    #+#              #
-#    Updated: 2023/12/05 16:51:33 by adantas-         ###   ########.fr        #
+#    Updated: 2023/12/08 17:39:06 by adantas-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-TARGET=Polymorphism.exec
+TARGET=Brain.exec
 ECHO=/usr/bin/echo -e
 YELLOW=\033[1;33m
 GREEN=\033[1;32m

@@ -20,6 +20,7 @@ Cat::Cat(void): Animal() {
 
 Cat::Cat(Cat const& that) {
 	std::cout << "Cat copy constructor called" << std::endl;
+	_brain = new Brain();
 	*this = that;
 }
 

@@ -20,6 +20,7 @@ Dog::Dog(void): Animal() {
 
 Dog::Dog(Dog const& that) {
 	std::cout << "Dog copy constructor called" << std::endl;
+	_brain = new Brain();
 	*this = that;
 }
 

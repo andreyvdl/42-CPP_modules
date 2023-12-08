@@ -35,7 +35,9 @@ Brain::~Brain(void) {
 Brain& Brain::operator=(Brain const& that) {
 	std::cout << "Brain assignation operator called" << std::endl;
 	if (this != &that) {
-		std::copy(that._ideas->begin(), that._ideas->end(), _ideas);
+		for (unsigned int i = 0; i < 100; i++) {
+			_ideas[i] = that._ideas[i];
+		}
 	}
 	return (*this);
 }

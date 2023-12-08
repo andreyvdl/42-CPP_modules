@@ -14,7 +14,8 @@
 # include "Animal.class.hpp"
 # include "Brain.class.hpp"
 
-class Cat: public Animal{
+class Cat: public Animal
+{
 	private:
 		Brain* _brain;
 

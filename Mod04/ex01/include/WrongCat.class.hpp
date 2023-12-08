@@ -14,7 +14,8 @@
 # include "WrongAnimal.class.hpp"
 # include <iostream>
 
-class WrongCat: public WrongAnimal {
+class WrongCat: public WrongAnimal
+{
 	public:
 		WrongCat(void);
 		WrongCat(WrongCat const& that);

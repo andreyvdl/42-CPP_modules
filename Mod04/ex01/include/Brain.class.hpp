@@ -13,7 +13,8 @@
 # define BRAIN_CLASS_HPP
 # include <iostream>
 
-class Brain {
+class Brain
+{
 	private:
 		std::string _ideas[100];
 
