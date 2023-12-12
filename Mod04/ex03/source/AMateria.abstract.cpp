@@ -14,32 +14,21 @@
 
 /* TRUCTORS ================================================================= */
 
-AMateria::AMateria(void): _type("none")
-{
-	std::cout << "AMateria default constructor called!" << std::endl;
-}
+AMateria::AMateria(void): _type("none") {}
 
-AMateria::AMateria(std::string const& type): _type(type)
-{
-	std::cout << "AMateria type constructor called!" << std::endl;
-}
+AMateria::AMateria(std::string const& type): _type(type) {}
 
 AMateria::AMateria(AMateria const& that)
 {
-	std::cout << "AMateria copy constructor called!" << std::endl;
 	*this = that;
 }
 
-AMateria::~AMateria(void)
-{
-	std::cout << "AMateria destructor called!" << std::endl;
-}
+AMateria::~AMateria(void) {}
 
 /* OPERATORS ================================================================ */
 
 AMateria& AMateria::operator=(AMateria const& that)
 {
-	std::cout << "AMateria assignation operator called!" << std::endl;
 	if (this != &that) {
 		this->_type = that._type;
 	}

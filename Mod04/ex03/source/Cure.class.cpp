@@ -13,28 +13,19 @@
 
 /* TRUCTORS ================================================================= */
 
-Cure::Cure(void): AMateria()
-{
-	std::cout << "Cure default constructor called!" << std::endl;
-	this->_type = "cure";
-}
+Cure::Cure(void): AMateria("cure") {}
 
 Cure::Cure(Cure const& that)
 {
-	std::cout << "Cure copy constructor called!" << std::endl;
 	*this = that;
 }
 
-Cure::~Cure(void)
-{
-	std::cout << "Cure destructor called!" << std::endl;
-}
+Cure::~Cure(void) {}
 
 /* OPERATORS ================================================================ */
 
 Cure& Cure::operator=(Cure const& that)
 {
-	std::cout << "Cure assignation operator called!" << std::endl;
 	if (this != &that) {
 		this->_type = that._type;
 	}
