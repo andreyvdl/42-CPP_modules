@@ -30,7 +30,7 @@ AMateria::~AMateria(void) {}
 AMateria& AMateria::operator=(AMateria const& that)
 {
 	if (this != &that) {
-		this->_type = that._type;
+		_type = that._type;
 	}
 	return (*this);
 }

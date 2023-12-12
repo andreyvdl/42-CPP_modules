@@ -15,10 +15,7 @@
 
 Cure::Cure(void): AMateria("cure") {}
 
-Cure::Cure(Cure const& that)
-{
-	*this = that;
-}
+Cure::Cure(Cure const& that): AMateria("cure") {}
 
 Cure::~Cure(void) {}
 
@@ -26,9 +23,7 @@ Cure::~Cure(void) {}
 
 Cure& Cure::operator=(Cure const& that)
 {
-	if (this != &that) {
-		this->_type = that._type;
-	}
+	_type = "cure";
 	return (*this);
 }
 
