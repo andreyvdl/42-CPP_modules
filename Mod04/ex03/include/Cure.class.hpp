@@ -12,6 +12,7 @@
 #ifndef CURE_CLASS_HPP
 # define CURE_CLASS_HPP
 # include "AMateria.abstract.hpp"
+# include "ICharacter.interface.hpp"
 
 class Cure: public AMateria
 {
@@ -22,6 +23,7 @@ class Cure: public AMateria
 		Cure& operator=(Cure const& that);
 
 		AMateria* clone(void) const;
+		void use(ICharacter& target);
 };
 
 
