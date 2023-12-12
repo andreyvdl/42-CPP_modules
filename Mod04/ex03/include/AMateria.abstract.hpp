@@ -17,7 +17,7 @@
 class AMateria
 {
 	protected:
-		// [...]
+		std::string _type;
 
 	public:
 		AMateria(void);
@@ -26,7 +26,6 @@ class AMateria
 		AMateria& operator=(AMateria const& that);
 
 		AMateria(std::string const& type);
-		// [...]
 
 		std::string const& getType(void) const; //Returns the materia type
 
