@@ -16,7 +16,10 @@
 
 Ice::Ice(void): AMateria("ice") {}
 
-Ice::Ice(Ice const& that): AMateria("ice") {}
+Ice::Ice(Ice const& that): AMateria("ice")
+{
+	(void)that;
+}
 
 Ice::~Ice(void) {}
 
@@ -24,6 +27,7 @@ Ice::~Ice(void) {}
 
 Ice& Ice::operator=(Ice const& that)
 {
+	(void)that;
 	_type = "ice";
 	return (*this);
 }
