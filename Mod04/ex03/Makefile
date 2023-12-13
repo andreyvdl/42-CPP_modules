@@ -6,7 +6,7 @@
 #    By: adantas- <adantas-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 16:50:55 by adantas-          #+#    #+#              #
-#    Updated: 2023/12/11 14:54:25 by adantas-         ###   ########.fr        #
+#    Updated: 2023/12/13 16:59:25 by adantas-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ YELLOW=\033[1;33m
 GREEN=\033[1;32m
 RESET=\033[0m
 
-MANDATORY_FLAGS=-Wall -Wextra -Werror --std=c++98
+MANDATORY_FLAGS=-Wall -Wextra -Werror -std=c++98
 
 SOURCES=${wildcard source/*.cpp}
 
