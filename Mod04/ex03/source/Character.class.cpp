@@ -15,7 +15,7 @@
 
 void removeMateria(int idx, AMateria** inventory, AMateria** dropped);
 void cloneDropped(AMateria** dropped, AMateria** that);
-void cloneInventory(AMateria** inventory, const AMateria** that);
+void cloneInventory(AMateria** inventory, AMateria** that);
 void deleteDropped(AMateria** dropped);
 void deleteInventory(AMateria** inventory);
 void initDropped(AMateria** dropped);
@@ -23,14 +23,16 @@ void initInventory(AMateria** inventory);
 
 /* TRUCTORS ================================================================= */
 
-Character::Character(void): _name("noName")
+Character::Character(void)
 {
+	_name = "noName";
 	initInventory(_inventory);
 	initDropped(_dropped);
 }
 
-Character::Character(std::string const& name): _name(name)
+Character::Character(std::string const& name)
 {
+	_name = name;
 	initInventory(_inventory);
 	initDropped(_dropped);
 }
@@ -141,7 +143,7 @@ void deleteDropped(AMateria** dropped)
 	}
 }
 
-void cloneInventory(AMateria** inventory, const AMateria** that)
+void cloneInventory(AMateria** inventory, AMateria** that)
 {
 	for (size_t i = 0; i < 4; i++) {
 		if (that[i] != NULL) {
