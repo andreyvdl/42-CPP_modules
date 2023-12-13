@@ -24,6 +24,9 @@ class MateriaSource: public IMateriaSource
 		MateriaSource(MateriaSource const& that);
 		~MateriaSource(void);
 		MateriaSource& operator=(MateriaSource const& that);
+
+		void learnMateria(AMateria* materia);
+		AMateria* createMateria(std::string const & type);
 };
 
 #endif
