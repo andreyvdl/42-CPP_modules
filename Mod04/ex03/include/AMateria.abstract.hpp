@@ -12,7 +12,8 @@
 #ifndef AMATERIA_ABSTRACT_HPP
 # define AMATERIA_ABSTRACT_HPP
 # include <iostream>
-# include "ICharacter.interface.hpp"
+
+class ICharacter; // para evitar dependencia circular
 
 class AMateria
 {

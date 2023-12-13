@@ -11,12 +11,14 @@
 #pragma once
 #ifndef ICHARACTER_INTERFACE_HPP
 # define ICHARACTER_INTERFACE_HPP
-# include "AMateria.abstract.hpp"
+# include <iostream>
+
+class AMateria; // para evitar dependencia circular
 
 class ICharacter
 {
 	public:
-		virtual ~ICharacter(void);
+		virtual ~ICharacter(void) {};
 		virtual std::string const& getName(void) const = 0;
 		virtual void equip(AMateria* m) = 0;
 		virtual void unequip(int idx) = 0;
