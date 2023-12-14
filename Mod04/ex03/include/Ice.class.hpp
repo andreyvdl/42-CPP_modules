@@ -15,8 +15,6 @@
 
 class Ice: public AMateria
 {
-	private:
-
 	public:
 		Ice(void);
 		Ice(Ice const& that);
