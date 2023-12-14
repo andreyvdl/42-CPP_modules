@@ -26,9 +26,9 @@
 		<td>Module 2</td>
 		<td>100/100</td>
 		<td>Module 3</td>
-		<td>0/100</td>
+		<td>100/100</td>
 		<td>Module 4</td>
-		<td>0/100</td>
+		<td>100/100</td>
 	</tr>
 	<tr>
 		<td>Module 5</td>
