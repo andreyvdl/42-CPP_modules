@@ -2,40 +2,42 @@
 #ifndef BUREAUCRAT_CLASS_HPP
 # define BUREAUCRAT_CLASS_HPP
 
-#include <iostream>
-#include <stdexcept>
+# include <iostream>
+# include <stdexcept>
 
 class Bureaucrat
 {
 	private:
 		const std::string	_name;
-		uint8_t				_grade;
+		int 				_grade;
 	
 	public:
-							Bureaucrat(void);
-							Bureaucrat(std::string const name, uint8_t grade);
-							Bureaucrat(Bureaucrat const& that);
-							~Bureaucrat(void);
-		Bureaucrat&			operator=(Bureaucrat const& that);
+		class GradeTooHighException: public std::exception
+		{
+			public:
+				virtual const char*	what() const throw();
+		};
+		
+		class GradeTooLowException: public std::exception
+		{
+			public:
+				virtual const char*	what() const throw();
+		};
 
-		const std::string	getName(void);
-		uint8_t				getGrade(void);
-		void				upGrade(void);
-		void				downGrade(void);
+		Bureaucrat(void);
+		Bureaucrat(std::string const name, int grade)
+			throw(GradeTooHighException, GradeTooLowException);
+		Bureaucrat(Bureaucrat const& that);
+		~Bureaucrat(void);
+		Bureaucrat&	operator=(Bureaucrat const& that);
 
-	class GradeTooHighException: public std::exception
-	{
-		public:
-			virtual char* const	what(void) const throw(GradeTooHighException);
-	};
-	
-	class GradeTooLowException: public std::exception
-	{
-		public:
-			virtual char* const	what(void) const throw(GradeTooLowException);
-	};
-}
+		const std::string	getName(void) const;
+		int					getGrade(void) const;
+		void 				upGrade(void) throw(GradeTooHighException);
+		void 				downGrade(void) throw(GradeTooLowException);
 
-std::ostream& operator<<(std::ostream& oStream, Bureaucrat const& that);
+};
+
+std::ostream& operator<<(std::ostream& oStream, const Bureaucrat& that);
 
 #endif
