@@ -9,19 +9,19 @@ class Bureaucrat
 {
 	private:
 		const std::string	_name;
-		int8_t				_grade;
+		uint8_t				_grade;
 	
 	public:
 							Bureaucrat(void);
-							Bureaucrat(std::string const name, int8_t grade);
+							Bureaucrat(std::string const name, uint8_t grade);
 							Bureaucrat(Bureaucrat const& that);
 							~Bureaucrat(void);
 		Bureaucrat&			operator=(Bureaucrat const& that);
 
-		const std::string	getName();
-		int8_t				getGrade();
-		void				gradeUp();
-		void				gradeDown();
+		const std::string	getName(void);
+		uint8_t				getGrade(void);
+		void				upGrade(void);
+		void				downGrade(void);
 
 	class GradeTooHighException: public std::exception
 	{
