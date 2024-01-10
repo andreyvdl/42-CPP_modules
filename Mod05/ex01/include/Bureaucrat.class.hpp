@@ -7,6 +7,8 @@
 # include "Grades.exception.hpp"
 # include "Form.class.hpp"
 
+class Form;
+
 class Bureaucrat
 {
 	private:
