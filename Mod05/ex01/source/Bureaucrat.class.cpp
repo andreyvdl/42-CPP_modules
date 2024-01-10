@@ -29,6 +29,23 @@ Bureaucrat::Bureaucrat(Bureaucrat const& that)
 
 Bureaucrat::~Bureaucrat(void) {};
 
+// OPERATOR ====================================================================
+
+Bureaucrat& Bureaucrat::operator=(Bureaucrat const& that)
+{
+	if (this != &that) {
+		const_cast<std::string&>(_name) = that._name;
+		_grade = that._grade;
+	}
+	return (*this);
+}
+
+std::ostream& operator<<(std::ostream& oStream, Bureaucrat const& that)
+{
+	oStream << that.getName()<< ", bureaucrat grade " << that.getGrade();
+	return (oStream);
+}
+
 // METHODS =====================================================================
 
 const std::string Bureaucrat::getName(void) const
@@ -61,19 +78,13 @@ throw(GradeTooLowException)
 	}
 }
 
-// OPERATOR ====================================================================
-
-Bureaucrat& Bureaucrat::operator=(Bureaucrat const& that)
+void Bureaucrat::signForm(Form& form)
 {
-	if (this != &that) {
-		const_cast<std::string&>(_name) = that._name;
-		_grade = that._grade;
+	try {
+		form.beSigned(*this);
+		std::cout << _name << " signed " << form.getName() << std::endl;
+	} catch (std::exception& e) {
+		std::cout << _name << " cannot sign " << form.getName() << " because "
+			<< e.what() << std::endl;
 	}
-	return (*this);
-}
-
-std::ostream& operator<<(std::ostream& oStream, Bureaucrat const& that)
-{
-	oStream << that.getName()<< ", bureaucrat grade " << that.getGrade();
-	return (oStream);
 }
