@@ -23,7 +23,8 @@ _name(name), _signGrade(signGrade), _execGrade(execGrade), _signed(false)
 	}
 }
 
-Form::Form(Form const& that)
+Form::Form(Form const& that):
+_name("JustAForm"), _signGrade(150), _execGrade(150), _signed(false)
 {
 	*this = that;
 }
@@ -47,7 +48,14 @@ std::ostream& operator<<(std::ostream& oStream, const Form& that)
 {
 	oStream << "Form_name: " << that.getName() << ", sign_grade: "
 		<< that.getSignGrade() << ", exec_grade: " << that.getExecGrade()
-		<< ", signed: " << (that.getSigned() ? "Yes" : "No");
+		<< ", signed: ";
+	if (that.getSigned()) {
+		oStream << "Yes";
+	} else {
+		oStream << "No";
+	}
+
+	return (oStream);
 }
 
 /* METHODS ================================================================== */
@@ -72,7 +80,7 @@ bool Form::getSigned(void) const
 	return (_signed);
 }
 
-void Form::beSigned(Bureaucrat const& bureau)
+void Form::beSigned(Bureaucrat const& bureau) throw(GradeTooLowException)
 {
 	if (bureau.getGrade() > _signGrade) {
 		throw GradeTooLowException();
