@@ -31,14 +31,12 @@ Bureaucrat::~Bureaucrat(void) {};
 
 // METHODS =====================================================================
 
-const char* Bureaucrat::GradeTooLowException::what(void) const
-throw()
+const char* GradeTooLowException::what(void) const throw()
 {
 	return ("You can't go below the grade 150!");
 }
 
-const char* Bureaucrat::GradeTooHighException::what(void) const
-throw()
+const char* Bureaucrat::GradeTooHighException::what(void) const throw()
 {
 	return ("You can't go higher the grade 1!");
 }
