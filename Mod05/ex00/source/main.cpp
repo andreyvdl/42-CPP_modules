@@ -38,7 +38,7 @@ namespace tests
 
 			std::cout << b1 << std::endl;
 		} catch(const std::exception& e) {
-			std::cerr << e.what() << '\n';
+			std::cout << e.what() << '\n';
 		}
 
 		try {
@@ -48,7 +48,7 @@ namespace tests
 
 			std::cout << b1 << std::endl;
 		} catch(const std::exception& e) {
-			std::cerr << e.what() << '\n';
+			std::cout << e.what() << '\n';
 		}
 
 		try {
@@ -59,7 +59,7 @@ namespace tests
 			b1.upGrade();
 			std::cout << b1 << std::endl;
 		} catch(const std::exception& e) {
-			std::cerr << e.what() << '\n';
+			std::cout << e.what() << '\n';
 		}
 
 		try {
@@ -70,7 +70,7 @@ namespace tests
 			b1.downGrade();
 			std::cout << b1 << std::endl;
 		} catch(const std::exception& e) {
-			std::cerr << e.what() << '\n';
+			std::cout << e.what() << '\n';
 		}
 
 		try {
@@ -89,7 +89,7 @@ namespace tests
 				(b1.*f)();
 			}
 		} catch (const std::exception& e) {
-			std::cerr << e.what() << '\n';
+			std::cout << e.what() << '\n';
 		}
 	}
 }

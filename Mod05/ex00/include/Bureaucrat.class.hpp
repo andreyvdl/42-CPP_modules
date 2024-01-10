@@ -25,13 +25,12 @@ class Bureaucrat
 			public:
 				virtual const char*	what() const throw();
 		};
-		
 
-		Bureaucrat(void);
-		Bureaucrat(std::string const name, int grade)
-			throw(GradeTooHighException, GradeTooLowException);
-		Bureaucrat(Bureaucrat const& that);
-		~Bureaucrat(void);
+					Bureaucrat(void);
+					Bureaucrat(std::string const name, int grade)
+						throw(GradeTooHighException, GradeTooLowException);
+					Bureaucrat(Bureaucrat const& that);
+					~Bureaucrat(void);
 		Bureaucrat&	operator=(Bureaucrat const& that);
 
 		const std::string	getName(void) const;
