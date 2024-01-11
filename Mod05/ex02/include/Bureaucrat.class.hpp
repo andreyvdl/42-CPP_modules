@@ -28,6 +28,8 @@ class Bureaucrat
 		void	upGrade(void) throw(GradeTooHighException);
 		void	downGrade(void) throw(GradeTooLowException);
 		void	signForm(AForm& form);
+		void	executeForm(AForm const& form) const
+			throw(GradeTooLowException, NotSignedException);
 };
 
 std::ostream&	operator<<(std::ostream& oStream, const Bureaucrat& that);
