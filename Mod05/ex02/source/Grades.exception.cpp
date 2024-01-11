@@ -9,3 +9,8 @@ const char* GradeTooHighException::what() const throw()
 {
 	return ("Grade is too high!");
 }
+
+const char* NotSignedException::what() const throw()
+{
+	return ("Form isn't signed!");
+}
