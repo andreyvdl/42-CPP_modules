@@ -7,10 +7,13 @@
  /~~         ~~\\   /~~         ~~\\   /~~         ~~\\\n\
 {               } {               } {               }\n\
  \\  _-     -_  /   \\  _-     -_  /   \\  _-     -_  /\n\
-   ~  \\ //  ~       ~  \\ //  ~       ~  \\ //  ~\n\
+   ~  \\ //  ~        ~  \\ //  ~        ~  \\ //  ~\n\
 _- -   | | _- _   _- -   | | _- _   _- -   | | _- _\n\
   _ -  | |   -_     _ -  | |   -_     _ -  | |   -_\n\
-      // \\             // \\             // \\"
+      // \\              // \\              // \\\
+"
+
+void drawTree(std::string const& fileName) throw(std::ios_base::failure);
 
 /* TRUCTORS ================================================================= */
 
@@ -43,18 +46,17 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(
 /* METHODS ================================================================== */
 
 void ShrubberyCreationForm::execute(Bureaucrat const& executor) const
-throw(GradeTooLowException, NotSignedException)
+throw(GradeTooLowException, NotSignedException, std::ios_base::failure)
 {
 	if (!getSigned()) {
 		throw NotSignedException();
 	} else if (executor.getGrade() > getExecGrade()) {
 		throw GradeTooLowException();
-	} else {
-		drawTree(_target + "_shrubbery");
 	}
+	drawTree(_target + "_shrubbery");
 }
 
-void drawTree(std::string const& fileName)
+void drawTree(std::string const& fileName) throw(std::ios_base::failure)
 {
 	std::ofstream out(fileName.c_str(), std::ios::out | std::ios::trunc);
 

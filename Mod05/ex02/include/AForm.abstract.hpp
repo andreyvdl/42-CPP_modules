@@ -30,7 +30,9 @@ class AForm
 		bool	getSigned(void) const;
 		void	beSigned(Bureaucrat const& that) throw(GradeTooLowException);
 		virtual void	execute(Bureaucrat const& executor) const
-			throw(GradeTooLowException, NotSignedException) = 0;
+			throw(GradeTooLowException, NotSignedException,
+				std::ios_base::failure
+			) = 0;
 };
 
 std::ostream&	operator<<(std::ostream& oStream, const AForm& that);
