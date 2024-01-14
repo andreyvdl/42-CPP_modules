@@ -41,5 +41,5 @@ throw(GradeTooLowException, NotSignedException, std::ios_base::failure)
 	} else if (executor.getGrade() > getExecGrade()) {
 		throw GradeTooLowException();
 	}
-	std::cout << _target << " has been pardoned by Zafod Beeblebrox." << std::endl;
+	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }
