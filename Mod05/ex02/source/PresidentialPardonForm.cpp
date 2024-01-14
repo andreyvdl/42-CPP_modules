@@ -10,10 +10,12 @@ AForm("PresidentialPardonForm", 25, 5), _target(target) {};
 
 PresidentialPardonForm::PresidentialPardonForm(
 	PresidentialPardonForm const& that
-)
+):
+AForm("PresidentialPardonForm", 25, 5), _target("NoTarget")
 {
 	*this = that;
 }
+
 PresidentialPardonForm::~PresidentialPardonForm(void) {};
 
 /* OPERATORS ================================================================ */

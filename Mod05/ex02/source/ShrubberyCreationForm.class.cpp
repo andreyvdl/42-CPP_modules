@@ -23,7 +23,10 @@ AForm("ShrubberyCreationForm", 145, 137), _target("NoTarget") {};
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const target):
 AForm("ShrubberyCreationForm", 145, 137), _target(target) {};
 
-ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const& that)
+ShrubberyCreationForm::ShrubberyCreationForm(
+	ShrubberyCreationForm const& that
+):
+AForm("ShrubberyCreationForm", 145, 137), _target("NoTarget")
 {
 	*this = that;
 }

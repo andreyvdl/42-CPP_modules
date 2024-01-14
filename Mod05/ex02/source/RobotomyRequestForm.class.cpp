@@ -10,7 +10,8 @@ AForm("RobotomyRequestForm", 72, 45) {};
 RobotomyRequestForm::RobotomyRequestForm(std::string const target):
 AForm("RobotomyRequestForm", 72, 45), _target(target) {};
 
-RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const& that)
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const& that):
+AForm("RobotomyRequestForm", 72, 45), _target("NoTarget")
 {
 	*this = that;
 }
