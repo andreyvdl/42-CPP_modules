@@ -6,11 +6,11 @@
 #    By: adantas- <adantas-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/15 13:43:55 by adantas-          #+#    #+#              #
-#    Updated: 2024/01/16 16:52:36 by adantas-         ###   ########.fr        #
+#    Updated: 2024/01/17 14:42:44 by adantas-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-TARGET=IHateIt.exec
+TARGET=convert
 ECHO=/usr/bin/echo -e
 YELLOW=\033[1;33m
 GREEN=\033[1;32m
