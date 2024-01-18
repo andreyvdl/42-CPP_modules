@@ -1,27 +1,58 @@
 #include "../include/ScalarConverter.class.hpp"
+#include <sstream>
+#include <string>
+#include <limits>
 #include <cmath>
 
-std::string abstractionChar(double dNum)
+static std::string abstractionFloat(double dNum, std::string const& rest)
+{
+	std::ostringstream oss;
+
+	if (isinff(static_cast<float>(dNum))) {
+		return (std::string("impossible"));
+	}
+	oss << static_cast<float>(dNum) << rest + "f";
+	return (oss.str());
+}
+
+static std::string abstractionInt(double dNum)
+{
+	std::ostringstream oss;
+
+	if (dNum < static_cast<double>(std::numeric_limits<int>::min()) ||
+		dNum > static_cast<double>(std::numeric_limits<int>::max())
+	) {
+		return (std::string("impossible"));
+	}
+	oss << static_cast<int>(dNum);
+	return (oss.str());
+}
+
+static std::string abstractionChar(double dNum)
 {
 	return (static_cast<int>(dNum) >= 32 && static_cast<int>(dNum) <= 126 ?
 		std::string("''").insert(1, 1, static_cast<char>(dNum)) :
-		"Non displayable"
+		static_cast<int>(dNum) < 0 || static_cast<int>(dNum) > 127 ?
+			std::string("impossible") :
+			std::string("Non displayable")
 	);
 }
 
-std::string abstractionChar(int iNum)
+static std::string abstractionChar(int iNum)
 {
 	return (iNum >= 32 && iNum <= 126 ?
 		std::string("''").insert(1, 1, static_cast<char>(iNum)) :
-		"Non displayable"
+		iNum < 0 || iNum > 127 ?
+			std::string("impossible") :
+			std::string("Non displayable")
 	);
 }
 
-std::string abstractionChar(char byte)
+static std::string abstractionChar(char byte)
 {
 	return (byte >= ' ' && byte <= '~' ?
 		std::string("''").insert(1, 1, byte) :
-		"Non displayable"
+		std::string("Non displayable")
 	);
 }
 
@@ -56,12 +87,13 @@ void printFloating(std::string const& str)
 	dNum = atof(str.c_str());
 
 	std::string charValue(abstractionChar(dNum));
-	std::string hasRemainder(fmod(dNum, 1) == 0.0 ? ".0" : ""); 
+	std::string hasRemainder(fmod(dNum, 1) == 0.0 ? ".0" : "");
+	std::string intValue(abstractionInt(dNum));
+	std::string floatValue(abstractionFloat(dNum, hasRemainder));
 
 	std::cout << "char: " << charValue << std::endl
-		<< "int: " << static_cast<int>(dNum) << std::endl
-		<< "float: " << static_cast<float>(dNum) << hasRemainder + "f"
-			<< std::endl
+		<< "int: " << intValue << std::endl
+		<< "float: " << floatValue << std::endl
 		<< "double: " << dNum << hasRemainder << std::endl;
 }
 
