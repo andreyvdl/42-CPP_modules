@@ -6,11 +6,11 @@
 #    By: adantas- <adantas-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/15 13:43:55 by adantas-          #+#    #+#              #
-#    Updated: 2024/01/17 15:53:08 by adantas-         ###   ########.fr        #
+#    Updated: 2024/01/18 15:18:54 by adantas-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-TARGET=Reinterpret.exec
+TARGET=Typeinfo.exec
 ECHO=/usr/bin/echo -e
 YELLOW=\033[1;33m
 GREEN=\033[1;32m

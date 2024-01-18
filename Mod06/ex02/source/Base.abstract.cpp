@@ -43,10 +43,13 @@ void identify(Base* p)
 
 void identify(Base& p)
 {
-	if (isA(p))
+	if (isA(p)) {
 		std::cout << "this base is A" << std::endl;
-	else if (isB(p))
+	} else if (isB(p)) {
 		std::cout << "this base is B" << std::endl;
-	else if (isC(p))
+	} else if (isC(p)) {
 		std::cout << "this base is C" << std::endl;
+	} else {
+		std::cout << "this base is invalid" << std::endl;
+	}
 }
