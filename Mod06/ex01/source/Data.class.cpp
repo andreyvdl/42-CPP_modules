@@ -12,13 +12,13 @@ Data::~Data(void) {};
 
 Data& Data::operator=(Data const& that)
 {
-	this->_member = that._member;
+	_member = that._member;
 	return (*this);
 }
 
 /* MEHTODS ================================================================== */
 
-uint32_t Data::getPrivate(void) const
+uint32_t Data::getMember(void) const
 {
-	return (this->_member);
+	return (_member);
 }

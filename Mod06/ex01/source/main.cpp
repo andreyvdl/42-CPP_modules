@@ -8,9 +8,9 @@ int main(void)
 	uintptr_t raw = Serializer::serialize(data);
 	Data* copy = Serializer::deserialize(raw);
 
-	std::cout << "data->getPrivate(): " << data->getPrivate() << std::endl;
+	std::cout << "data->getMember(): " << data->getMember() << std::endl;
 	// raw = -42; result in a segfault
-	std::cout << "copy->getPrivate(): " << copy->getPrivate() << std::endl;
+	std::cout << "copy->getMember(): " << copy->getMember() << std::endl;
 
 	delete data;
 	return (0);

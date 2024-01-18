@@ -15,7 +15,7 @@ class Data
 		~Data(void);
 		Data& operator=(Data const& that);
 
-		uint32_t getPrivate(void) const;
+		uint32_t getMember(void) const;
 };
 
 #endif
