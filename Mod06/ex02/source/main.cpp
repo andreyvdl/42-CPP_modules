@@ -18,4 +18,6 @@ int main(void)
 		delete base;
 		std::endl(std::cout);
 	}
+
+	identify(NULL);
 }
