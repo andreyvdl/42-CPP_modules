@@ -2,10 +2,10 @@
 #include <cmath>
 #include <sstream>
 
-ECases impossibleCases(std::string const& str);
-ECases testIfInfinite(std::string const& str, ECases type);
-ECases testIfOverflow(std::string const& str);
-ECases validCases(std::string const& str);
+static ECases impossibleCases(std::string const& str);
+static ECases testIfInfinite(std::string const& str, ECases type);
+static ECases testIfOverflow(std::string const& str);
+static ECases validCases(std::string const& str);
 
 ECases detectType(std::string const& str)
 {
@@ -38,7 +38,7 @@ ECases detectType(std::string const& str)
 	return (MEGA_IMPOSSIBLE);
 }
 
-ECases impossibleCases(std::string const& str)
+static ECases impossibleCases(std::string const& str)
 {
 	ECases eArr[8] = {E_NAN, E_NAN, NEG_INF, NEG_INF, POS_INF, POS_INF,
 		POS_INF, POS_INF
@@ -54,7 +54,7 @@ ECases impossibleCases(std::string const& str)
 	return (MEGA_IMPOSSIBLE);
 }
 
-ECases validCases(std::string const& str)
+static ECases validCases(std::string const& str)
 {
 	if (str.size() == 1 && !isdigit(str[0])) {
 		return (CHAR);
@@ -68,7 +68,7 @@ ECases validCases(std::string const& str)
 	return (MEGA_IMPOSSIBLE);
 }
 
-ECases testIfOverflow(std::string const& str)
+static ECases testIfOverflow(std::string const& str)
 {
 	std::istringstream iss(str);
 	int num = 0;
@@ -83,7 +83,7 @@ ECases testIfOverflow(std::string const& str)
 	return (INT);
 }
 
-ECases testIfInfinite(std::string const& str, ECases type)
+static ECases testIfInfinite(std::string const& str, ECases type)
 {
 	std::istringstream iss(str);
 	float fNum = static_cast<float>(0);

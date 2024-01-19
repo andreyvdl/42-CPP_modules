@@ -3,7 +3,7 @@
 
 int main(void)
 {
-	//Serializer serial;
+	// Serializer serial;
 	Data* data = new Data();
 	uintptr_t raw = Serializer::serialize(data);
 	Data* copy = Serializer::deserialize(raw);
