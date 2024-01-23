@@ -7,7 +7,7 @@
 template <typename T>
 void iter(T const* arrAddr, int size, void (*func)(T const&))
 {
-	if (arrAddr == NULL) {
+	if (arrAddr == NULL || func == NULL) {
 		return ;
 	}
 	for (int i = 0; i < size; i++) {
@@ -18,7 +18,7 @@ void iter(T const* arrAddr, int size, void (*func)(T const&))
 template <typename T>
 void iter(T* arrAddr, int size, void (*func)(T&))
 {
-	if (arrAddr == NULL) {
+	if (arrAddr == NULL || func == NULL) {
 		return ;
 	}
 	for (int i = 0; i < size; i++) {
