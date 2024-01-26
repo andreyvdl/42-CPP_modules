@@ -1,4 +1,3 @@
-
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
@@ -7,7 +6,7 @@
 #    By: adantas- <adantas-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 13:05:54 by adantas-          #+#    #+#              #
-#    Updated: 2023/11/15 13:09:28 by adantas-         ###   ########.fr        #
+#    Updated: 2024/01/25 17:19:46 by adantas-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +19,9 @@ RESET=\033[0m
 MANDATORY_FLAGS=-Wall -Wextra -Werror --std=c++98
 
 SOURCES=${wildcard source/*.cpp}
+INCLUDES=${wildcard include/*.hpp}
 
-${TARGET}: ${SOURCES}
+${TARGET}: ${INCLUDES} ${SOURCES}
 	@${ECHO} "${YELLOW}Compiling $@...${RESET}"
 	@c++ ${MANDATORY_FLAGS} -Iinclude ${SOURCES} -o $@
 	@${ECHO} "${GREEN}Done!${RESET}"
