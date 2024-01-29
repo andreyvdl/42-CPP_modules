@@ -1,6 +1,5 @@
 #include "../include/easyfind.template.hpp"
 #include "../include/defines.hpp"
-#include <stdexcept>
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -26,16 +25,11 @@ namespace tests
       ss << deck[i] << " ";
     }
     std::cout << ss.str() << std::endl;
-
-    try {
-      std::cout << FG_BLUE "SEARCHING FOR 2" RESET << std::endl;
-      std::cout << *easyfind(deck, 2) << std::endl;
-      std::cout << FG_RED "SEARCHING FOR A VALUE THAT DON'T EXIST" RESET
-        << std::endl;
-      std::cout << *easyfind(deck, -42) << std::endl;
-    } catch (std::exception& e) {
-      std::cout << e.what() << std::endl;
-    }
+    std::cout << FG_BLUE "SEARCHING FOR 2" RESET << std::endl;
+    std::cout << std::boolalpha << easyfind(deck, 2) << std::endl;
+    std::cout << FG_RED "SEARCHING FOR A VALUE THAT DON'T EXIST" RESET
+      << std::endl;
+    std::cout << std::boolalpha << easyfind(deck, -42) << std::endl;
   }
 
   void listTest(void)
@@ -55,16 +49,11 @@ namespace tests
       ss << *it << " ";
     }
     std::cout << ss.str() << std::endl;
-
-    try {
-      std::cout << FG_BLUE "SEARCHING FOR 2" RESET << std::endl;
-      std::cout << *easyfind(lst, 2) << std::endl;
-      std::cout << FG_RED "SEARCHING FOR A VALUE THAT DON'T EXIST" RESET
-        << std::endl;
-      std::cout << *easyfind(lst, -42) << std::endl;
-    } catch (std::exception& e) {
-      std::cout << e.what() << std::endl;
-    }
+    std::cout << FG_BLUE "SEARCHING FOR 2" RESET << std::endl;
+    std::cout << std::boolalpha << easyfind(lst, 2) << std::endl;
+    std::cout << FG_RED "SEARCHING FOR A VALUE THAT DON'T EXIST" RESET
+      << std::endl;
+    std::cout << std::boolalpha << easyfind(lst, -42) << std::endl;
   }
 
   void vectorTest(void)
@@ -84,16 +73,11 @@ namespace tests
       ss << *it << " ";
     }
     std::cout << ss.str() << std::endl;
-
-    try {
-      std::cout << FG_BLUE "SEARCHING FOR 2" RESET << std::endl;
-      std::cout << *easyfind(vec, 2) << std::endl;
-      std::cout << FG_RED "SEARCHING FOR A VALUE THAT DON'T EXIST" RESET
-        << std::endl;
-      std::cout << *easyfind(vec, -42) << std::endl;
-    } catch (std::exception& e) {
-      std::cout << e.what() << std::endl;
-    }
+    std::cout << FG_BLUE "SEARCHING FOR 2" RESET << std::endl;
+    std::cout << std::boolalpha << easyfind(vec, 2) << std::endl;
+    std::cout << FG_RED "SEARCHING FOR A VALUE THAT DON'T EXIST" RESET
+      << std::endl;
+    std::cout << std::boolalpha << easyfind(vec, -42) << std::endl;
   }
 }
 

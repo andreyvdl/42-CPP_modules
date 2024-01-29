@@ -1,23 +1,16 @@
 #include "../include/easyfind.template.hpp"
 
-const char* NotFoundExc::what() const throw()
-{
-  return ("Value not found");
-}
-
 template <typename T>
-typename T::iterator easyfind(T& cont, int const val)
-throw(NotFoundExc)
+bool easyfind(T& cont, int const val)
 {
   typename T::iterator itB = cont.begin();
-  typename T::iterator itE = cont.end();
 
   if (*itB == val) {
-    return (itB);
+    return (true);
   }
-  itB = std::find(itB, itE, val);
-  if (itB != itE) {
-    return (itB);
+  itB = std::find(itB, cont.end(), val);
+  if (itB != cont.end()) {
+    return (true);
   }
-  throw NotFoundExc();
+  return (false);
 }
