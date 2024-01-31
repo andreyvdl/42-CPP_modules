@@ -28,7 +28,7 @@ FragTrap::FragTrap(std::string name): ClapTrap(name) {
 	setDamage(30);
 }
 
-FragTrap::FragTrap(FragTrap const& that) {
+FragTrap::FragTrap(FragTrap const& that): ClapTrap(that) {
 	std::cout << FG_UL_GREEN << "FragTrap copy constructor called."
 		<< RESET << std::endl;
 	*this = that;

@@ -28,7 +28,7 @@ ScavTrap::ScavTrap(std::string name): ClapTrap(name) {
 	_damage = 20;
 }
 
-ScavTrap::ScavTrap(ScavTrap const& that) {
+ScavTrap::ScavTrap(ScavTrap const& that): ClapTrap(that) {
 	std::cout << FG_BD_GREEN "ScavTrap copy constructor called." RESET
 		<< std::endl;
 	*this = that;

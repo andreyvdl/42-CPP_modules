@@ -34,7 +34,8 @@ FragTrap(name + SUFFIX_NAME), ScavTrap(name + SUFFIX_NAME) {
 	_damage = static_cast<int>(FragTrap::_defaultDamage);
 }
 
-DiamondTrap::DiamondTrap(DiamondTrap const& that) {
+DiamondTrap::DiamondTrap(DiamondTrap const& that): ClapTrap(that),
+FragTrap(that), ScavTrap(that) {
 	std::cout << BG_GREEN "DiamondTrap copy constructor called." RESET
 		<< std::endl;
 	*this = that;
