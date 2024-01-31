@@ -20,6 +20,8 @@ void Harl::complain(std::string level) {
 
 	for (i = 0; i < 4; ++i)
 		if (levels[i] == level) break;
+// i hate C/C++ compiler :)
+#pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
 	switch (i) {
 		case 0:
 			this->debug();
@@ -35,25 +37,26 @@ void Harl::complain(std::string level) {
 				<< "[ Probably complaining about insignificant problems ]"
 				<< std::endl;
 	}
+#pragma GCC diagnostic pop
 }
 
 #define CRLF "\r\n"
 void Harl::debug(void) {
-	std::cout << "[ DEBUG ]"CRLF << "I thought I fixed that." << std::endl;
+	std::cout << "[ DEBUG ]" CRLF << "I thought I fixed that." << std::endl;
 }
 
 void Harl::info(void) {
-	std::cout << "[ INFO ]"CRLF
+	std::cout << "[ INFO ]" CRLF
 		<< "No one told me so I was forced to assume which way to do that."
 		<< std::endl;
 }
 
 void Harl::warning(void) {
-	std::cout << "[ WARNING ]"CRLF
+	std::cout << "[ WARNING ]" CRLF
 		<< "You must have the wrong version." << std::endl;
 }
 
 void Harl::error(void) {
-	std::cout << "[ ERROR ]"CRLF
+	std::cout << "[ ERROR ]" CRLF
 		<< "I can't make that a priority right now." << std::endl;
 }

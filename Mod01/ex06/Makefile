@@ -16,7 +16,7 @@ YELLOW=\033[1;33m
 GREEN=\033[1;32m
 RESET=\033[0m
 
-MANDATORY_FLAGS=-Wall -Wextra -Werror --std=c++98
+MANDATORY_FLAGS=-Wall -Wextra -Werror -std=c++98
 
 SOURCES=${wildcard source/*.cpp}
 
