@@ -15,7 +15,7 @@ Dog::Dog(void): Animal() {
 	_type = "Dog";
 }
 
-Dog::Dog(Dog const& that) {
+Dog::Dog(Dog const& that): Animal(that) {
 	std::cout << "Dog copy constructor called" << std::endl;
 	*this = that;
 }

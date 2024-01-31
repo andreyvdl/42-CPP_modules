@@ -15,7 +15,7 @@ Cat::Cat(void): Animal() {
 	_type = "Cat";
 }
 
-Cat::Cat(Cat const& that) {
+Cat::Cat(Cat const& that): Animal(that) {
 	std::cout << "Cat copy constructor called" << std::endl;
 	*this = that;
 }
