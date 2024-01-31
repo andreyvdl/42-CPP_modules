@@ -6,7 +6,7 @@ template <class T>
 MutantStack<T>::MutantStack(void): std::stack<T>() {};
 
 template <class T>
-MutantStack<T>::MutantStack(MutantStack const& that)
+MutantStack<T>::MutantStack(MutantStack const& that): std::stack<T>()
 {
   *this = that;
 }
