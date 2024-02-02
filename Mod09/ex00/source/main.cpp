@@ -2,7 +2,7 @@
 #include <fstream>
 
 static int runProgram(std::string const filename);
-static int printValues(std::ifstream& file, BtcEx const& db);
+static int printValues(std::ifstream& file, BitcoinExchange const& db);
 
 int main(int argc, char** argv)
 {
@@ -28,18 +28,19 @@ static int runProgram(std::string const path)
     return (1);
   }
 
-  BtcEx database;
+  BitcoinExchange database;
 
   try {
     database.initTable();
   } catch(std::exception& e) {
     std::cout << "Error: " << e.what() << std::endl;
+    file.close();
     return (2);
   }
   return (printValues(file, database));
 }
 
-static int printValues(std::ifstream& file, BtcEx const& db)
+static int printValues(std::ifstream& file, BitcoinExchange const& db)
 {
   std::string line;
 

@@ -7,9 +7,11 @@
 # include <iostream>
 # include <map>
 # include <stdexcept>
+# include <sstream>
 
-# define MAP_CALL std::map<size_t, double>
+# define MAP_CALL std::map<std::string, double>
 
+bool dateValid(std::string date);
 void removeWhitespace(std::string& line);
 
 class NoDatabaseExc: public std::exception
@@ -42,23 +44,29 @@ class ValueWrongExc: public std::exception
     virtual const char* what() throw();
 };
 
+class DoubleKeyExc: public std::exception
+{
+  public:
+    virtual const char* what() throw();
+};
 
-class BtcEx
+class BitcoinExchange
 {
   private:
     MAP_CALL  _table;
     bool      _loaded;
 
-    void  addToTable(std::string const& line);
+    void  addToTable(std::string const& line) throw (DoubleKeyExc);
 
   public:
-    BtcEx(void);
-    BtcEx(BtcEx const& that);
-    ~BtcEx(void);
+    BitcoinExchange(void);
+    BitcoinExchange(BitcoinExchange const& that);
+    ~BitcoinExchange(void);
 
-    BtcEx&  operator=(BtcEx const& that);
+    BitcoinExchange&  operator=(BitcoinExchange const& that);
 
-    void  initTable(void) throw(NoDatabaseExc, InvalidDatabaseExc);
+    void  initTable(void)
+      throw(NoDatabaseExc, InvalidDatabaseExc, DoubleKeyExc);
     void  convert(std::string const& line)
       throw(InvalidLineExc, WrongDateExc, ValueWrongExc); 
 };
