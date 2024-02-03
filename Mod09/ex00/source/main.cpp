@@ -1,3 +1,4 @@
+#include "../include/BitcoinExchange.class.hpp"
 #include <iostream>
 #include <fstream>
 
@@ -45,11 +46,15 @@ static int printValues(std::ifstream& file, BitcoinExchange const& db)
   std::string line;
 
   std::getline(file, line);
-  if (invalidHeader(line)) {
-
-
+  removeWhitespace(line);
+  if (line != "date | value") {
+    file.close();
+    std::cout << "Error: file heading is wrong!" << std::endl;
+    return (3);
+  }
   while (file.eof() == false) {
     std::getline(file, line);
+    removeWhitespace(line);
     try {
       db.convert(line);
     } catch (std::exception& e) {

@@ -117,7 +117,35 @@ throw(NoDatabaseExc, InvalidDatabaseExc, DoubleKeyExc)
 void  BitcoinExchange::convert(std::string const& line)
 throw(InvalidLineExc, WrongDateExc, ValueWrongExc)
 {
-  
+  size_t d = line.find('|');
+
+  if (d == std::string::npos) {
+    throw InvalidLineExc();
+  }
+
+  std::string key = line.substr(0, d);
+  std::string value = line.substr(d + 1);
+
+  removeWhitespace(key);
+  removeWhitespace(value);
+  if (dateValid(key) == false) {
+    throw WrongDateExc();
+  } else if (valueValid(value) == false) {
+    throw ValueWrongExc();
+  }
+
+  double dValue = atof(value.c_str());
+  MAP_CALL::iterator it = _table.lower_bound(key);
+
+  if (it == _table.end()) {
+    std::cout << key << " => " << dValue << " = " << (--it)->second * dValue
+      << std::endl;
+  } else {
+    std::cout << key << " => " << dValue << " = "
+      << (it->first == key ? it->second * dValue : it == _table.begin() ?
+        0 : (--it)->second * dValue
+      ) << std::endl;
+  }
 }
 
 // AUX ========================================================================

@@ -3,11 +3,12 @@
 # define BITCOIN_EXCHANGE_CLASS_HPP
 
 # include <algorithm>
+# include <cstdlib>
 # include <fstream>
 # include <iostream>
 # include <map>
-# include <stdexcept>
 # include <sstream>
+# include <stdexcept>
 
 # define MAP_CALL std::map<std::string, double>
 
