@@ -18,37 +18,37 @@ void removeWhitespace(std::string& line);
 class NoDatabaseExc: public std::exception
 {
   public:
-    virtual const char* what() throw();
+    virtual const char* what() const throw();
 };
 
 class InvalidDatabaseExc: public std::exception
 {
   public:
-    virtual const char* what() throw();
+    virtual const char* what() const throw();
 };
 
 class InvalidLineExc: public std::exception
 {
   public:
-    virtual const char* what() throw();
+    virtual const char* what() const throw();
 };
 
 class WrongDateExc: public std::exception
 {
   public:
-    virtual const char* what() throw();
+    virtual const char* what() const throw();
 };
 
 class ValueWrongExc: public std::exception
 {
   public:
-    virtual const char* what() throw();
+    virtual const char* what() const throw();
 };
 
 class DoubleKeyExc: public std::exception
 {
   public:
-    virtual const char* what() throw();
+    virtual const char* what() const throw();
 };
 
 class BitcoinExchange

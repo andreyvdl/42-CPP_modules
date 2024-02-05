@@ -57,18 +57,18 @@ bool dateValid(std::string date)
 
   for (std::string::iterator it = sYear.begin(); it != sYear.end(); ++it) {
     if (isdigit(static_cast<int>(*it)) == 0) {
-       return (false);
+      return (false);
     }
   }
   for (std::string::iterator it = sMonth.begin(); it != sMonth.end(); ++it) {
     if (isdigit(static_cast<int>(*it)) == 0) {
-       return (false);
+        return (false);
     }
     ++monthDigit;
   }
   for (std::string::iterator it = sDay.begin(); it != sDay.end(); ++it) {
     if (isdigit(static_cast<int>(*it)) == 0) {
-       return (false);
+        return (false);
     }
     ++dayDigit;
   }
@@ -109,7 +109,9 @@ bool dateValid(std::string date)
     static_cast<void>(e);
     return (false);
   }
-  if (iMonth < JAN || iMonth > DEC || iDay < 0 || iDay > 31) {
+  if (iYear < 0) {
+    return (false);
+  } else if (iMonth < JAN || iMonth > DEC || iDay < 1 || iDay > 31) {
     return (false);
   } else if (iDay == 29 && iMonth == FEB && isntLeapYear(iYear)) {
     return (false);

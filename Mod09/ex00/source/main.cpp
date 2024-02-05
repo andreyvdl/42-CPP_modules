@@ -3,7 +3,7 @@
 #include <fstream>
 
 static int runProgram(std::string const filename);
-static int printValues(std::ifstream& file, BitcoinExchange const& db);
+static int printValues(std::ifstream& file, BitcoinExchange& db);
 
 int main(int argc, char** argv)
 {
@@ -41,7 +41,7 @@ static int runProgram(std::string const path)
   return (printValues(file, database));
 }
 
-static int printValues(std::ifstream& file, BitcoinExchange const& db)
+static int printValues(std::ifstream& file, BitcoinExchange& db)
 {
   std::string line;
 

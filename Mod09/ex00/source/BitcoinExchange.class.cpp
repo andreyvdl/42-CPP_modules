@@ -1,36 +1,37 @@
 #include "../include/BitcoinExchange.class.hpp"
 
 static bool invalidLine(std::string const& line);
+static bool valueValid(std::string value);
 static bool valueValidTable(std::string value);
 
 // EXCPETIONS =================================================================
 
-const char* NoDatabaseExc::what() throw()
+const char* NoDatabaseExc::what() const throw()
 {
   return ("No database file found!");
 }
 
-const char* InvalidDatabaseExc::what() throw()
+const char* InvalidDatabaseExc::what() const throw()
 {
   return ("Database is wrong!");
 }
 
-const char* InvalidLineExc::what() throw()
+const char* InvalidLineExc::what() const throw()
 {
   return ("This line isn't valid!");
 }
 
-const char* WrongDateExc::what() throw()
+const char* WrongDateExc::what() const throw()
 {
   return ("The date isn't valid!");
 }
 
-const char* ValueWrongExc::what() throw()
+const char* ValueWrongExc::what() const throw()
 {
   return ("The value ins't valid!");
 }
 
-const char* DoubleKeyExc::what() throw()
+const char* DoubleKeyExc::what() const throw()
 {
   return ("Table have repeated dates!");
 }
@@ -123,8 +124,8 @@ throw(InvalidLineExc, WrongDateExc, ValueWrongExc)
     throw InvalidLineExc();
   }
 
-  std::string key = line.substr(0, d);
-  std::string value = line.substr(d + 1);
+  std::string key(line.substr(0, d));
+  std::string value(line.substr(d + 1));
 
   removeWhitespace(key);
   removeWhitespace(value);
@@ -192,6 +193,35 @@ static bool valueValidTable(std::string value)
     iss >> nbr;
   } catch (std::exception& e) {
     static_cast<void>(e);
+    return (false);
+  }
+  return (true);
+}
+
+static bool valueValid(std::string value)
+{
+  bool period = false;
+
+  for (std::string::iterator it = value.begin(); it != value.end(); ++it) {
+    if (static_cast<char>(*it) == '.' && period == false) {
+      period = !period;
+      continue;
+    } else if (isdigit(static_cast<int>(*it)) == 0) {
+      return (false);
+    }
+  }
+
+  std::istringstream iss(value);
+  double nbr;
+
+  iss.exceptions(std::ios::failbit);
+  try {
+    iss >> nbr;
+  } catch (std::exception& e) {
+    static_cast<void>(e);
+    return (false);
+  }
+  if (nbr < 0.0 || nbr > 1000.0) {
     return (false);
   }
   return (true);
