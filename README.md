@@ -4,45 +4,13 @@
 	<a href=https://github.com/gawbsouza/42-pdh><img src=https://github.com/gawbsouza/42-pdh/blob/main/badge/42pdh_badge.svg></a>
 </div>
 
----
-<table align=center>
-	<tr>
-		<th style=font-weight:bold>Module</th>
-		<th style=font-weight:bold>Score</th>
-		<th style=font-weight:bold>Module</th>
-		<th style=font-weight:bold>Score</th>
-		<th style=font-weight:bold>Module</th>
-		<th style=font-weight:bold>Score</th>
-		<th style=font-weight:bold>Module</th>
-		<th style=font-weight:bold>Score</th>
-		<th style=font-weight:bold>Module</th>
-		<th style=font-weight:bold>Score</th>
-	</tr>
-	<tr>
-		<td>Module 0</td>
-		<td>100/100</td>
-		<td>Module 1</td>
-		<td>100/100</td>
-		<td>Module 2</td>
-		<td>100/100</td>
-		<td>Module 3</td>
-		<td>100/100</td>
-		<td>Module 4</td>
-		<td>100/100</td>
-	</tr>
-	<tr>
-		<td>Module 5</td>
-		<td>0/100</td>
-		<td>Module 6</td>
-		<td>0/100</td>
-		<td>Module 7</td>
-		<td>0/100</td>
-		<td>Module 8</td>
-		<td>0/100</td>
-		<td>Module 9</td>
-		<td>0/100</td>
-	</tr>
-</table>
+Module|Score  |Module|Score
+---:  | :---  | ---: | :---
+00    |100/100|01    |100/100
+02    |100/100|03    |100/100
+04    |100/100|05    |100/100
+06    |100/100|07    |100/100
+08    |0/100  |09    |0/100
 
 ## Objective
 
