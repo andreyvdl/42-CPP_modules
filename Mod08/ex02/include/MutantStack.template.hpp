@@ -6,10 +6,6 @@
 # include <stack>
 # include <vector>
 
-// ! K.I.S.S.
-// # define GET_TYPE typename std::stack<T>::container_type
-// # define MS_IT GET_TYPE::iterator
-
 template <class T>
 class MutantStack: public std::stack<T>
 {
