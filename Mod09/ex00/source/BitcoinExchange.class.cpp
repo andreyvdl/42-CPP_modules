@@ -8,32 +8,37 @@ static bool valueValidTable(std::string value);
 
 const char* NoDatabaseExc::what() const throw()
 {
-  return ("No database file found!");
+  return ("NO DATABASE file found!");
 }
 
 const char* InvalidDatabaseExc::what() const throw()
 {
-  return ("Database is wrong!");
+  return ("DATABASE IS WRONG!");
 }
 
 const char* InvalidLineExc::what() const throw()
 {
-  return ("This line isn't valid!");
+  return ("This LINE isn't valid!");
 }
 
 const char* WrongDateExc::what() const throw()
 {
-  return ("The date isn't valid!");
+  return ("This DATE isn't valid!");
 }
 
 const char* ValueWrongExc::what() const throw()
 {
-  return ("The value ins't valid!");
+  return ("This VALUE isn't valid!");
 }
 
 const char* DoubleKeyExc::what() const throw()
 {
-  return ("Table have repeated dates!");
+  return ("Table have REPEATED dates!");
+}
+
+const char* EmptyLineExc::what() const throw()
+{
+  return ("This line is EMPTY!");
 }
 
 // TRUCTORS ===================================================================
@@ -83,23 +88,29 @@ void  BitcoinExchange::initTable(void)
 throw(NoDatabaseExc, InvalidDatabaseExc, DoubleKeyExc)
 {
   std::ifstream database("./data.csv");
+  std::string line;
 
   if (database.fail() || database.is_open() == false) {
     throw NoDatabaseExc();
   }
-
-  std::string line;
-
   std::getline(database, line);
   removeWhitespace(line);
   if (invalidLine(line)) {
     database.close();
     throw InvalidDatabaseExc();
   }
-  line.clear();
   while (database.eof() == false) {
+    line.clear();
     std::getline(database, line);
     removeWhitespace(line);
+    if (line.empty()) {
+      if (database.eof() == false) {
+        database.close();
+        throw InvalidDatabaseExc();
+      } else {
+        break;
+      }
+    }
     if (invalidLine(line)) {
       database.close();
       throw InvalidDatabaseExc();
@@ -110,14 +121,16 @@ throw(NoDatabaseExc, InvalidDatabaseExc, DoubleKeyExc)
       database.close();
       throw e;
     }
-    line.clear();
   }
   database.close();
 }
 
 void  BitcoinExchange::convert(std::string const& line)
-throw(InvalidLineExc, WrongDateExc, ValueWrongExc)
+throw(InvalidLineExc, WrongDateExc, ValueWrongExc, EmptyLineExc)
 {
+  if (line.empty()) {
+    throw EmptyLineExc();
+  }
   size_t d = line.find('|');
 
   if (d == std::string::npos) {
@@ -156,20 +169,15 @@ static bool invalidLine(std::string const& line)
   static bool checkHeader = true;
 
   if (checkHeader) {
-    if (line == "date,exchange_rate") {
-      checkHeader = !checkHeader;
-      return (false);
-    }
+    checkHeader = !checkHeader;
+    return (line != "date,exchange_rate");
   } else {
-    if (line.find(",") != std::string::npos) {
-      if (dateValid(line.substr(0, line.find(",")))
-        && valueValidTable(line.substr(line.find(",") + 1))
-      ) {
-        return (false);
-      }
-    }
+    return (line.find(",") == std::string::npos ?
+      true :
+      !(dateValid(line.substr(0, line.find(","))) &&
+        valueValidTable(line.substr(line.find(",") + 1)))
+    );
   }
-  return (true);
 }
 
 static bool valueValidTable(std::string value)
@@ -195,7 +203,7 @@ static bool valueValidTable(std::string value)
     static_cast<void>(e);
     return (false);
   }
-  return (true);
+  return (std::isfinite(nbr));
 }
 
 static bool valueValid(std::string value)
@@ -221,8 +229,5 @@ static bool valueValid(std::string value)
     static_cast<void>(e);
     return (false);
   }
-  if (nbr < 0.0 || nbr > 1000.0) {
-    return (false);
-  }
-  return (true);
+  return (std::isfinite(nbr) && nbr >= 0.0 && nbr <= 1000.0);
 }

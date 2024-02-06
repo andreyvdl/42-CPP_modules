@@ -18,7 +18,14 @@ enum t_months
   DEC,
 };
 
-static bool isntLeapYear(long int year);
+static bool findDivisor(std::string& date, std::string::iterator& d1,
+  std::string::iterator& d2
+);
+static bool has31Days(ssize_t month);
+static bool hasOnlyDigits(std::string& sYear, std::string& sMonth,
+  std::string& sDay
+);
+static bool isntLeapYear(ssize_t year);
 
 void removeWhitespace(std::string& line)
 {
@@ -35,23 +42,74 @@ void removeWhitespace(std::string& line)
 
 bool dateValid(std::string date)
 {
-// see if it have the date divisors ===========================================
-  std::string::iterator d1 = std::find(date.begin(), date.end(), '-');
+  std::string::iterator d1;
+  std::string::iterator d2;
 
-  if (d1 == date.end()) {
+  if (findDivisor(date, d1, d2) == false) {
     return (false);
   }
 
-  std::string::iterator d2 = std::find(d1 + 1, date.end(), '-');
-  
-  if (d2 == date.end()) {
-    return (false);
-  }
-
-// see if only there are only digits ==========================================
   std::string sYear(date.begin(), d1);
   std::string sMonth(d1 + 1, d2);
   std::string sDay(d2 + 1, date.end());
+
+  if (hasOnlyDigits(sYear, sMonth, sDay) == false) {
+    return (false);
+  }
+
+  std::istringstream iss(sYear);
+  ssize_t iDay = -42;
+  ssize_t iMonth = -42;
+  ssize_t iYear = -42;
+
+  iss.exceptions(std::ios::failbit);
+  try {
+    iss >> iYear;
+  } catch (std::exception& e) {
+    static_cast<void>(e);
+    return (false);
+  }
+  iss.clear();
+  iss.str(sMonth);
+  try {
+    iss >> iMonth;
+  } catch (std::exception& e) {
+    static_cast<void>(e);
+    return (false);
+  }
+  iss.clear();
+  iss.str(sDay);
+  try {
+    iss >> iDay;
+  } catch (std::exception& e) {
+    static_cast<void>(e);
+    return (false);
+  }
+  if (iYear < 1 || iMonth < JAN || iMonth > DEC || iDay < 1 || iDay > 31) {
+    return (false);
+  }
+  return (iDay <= (iMonth == FEB ? 
+    (isntLeapYear(iYear) ? 28 : 29) :
+    (has31Days(iMonth) ? 31 : 30))
+  );
+}
+
+static bool findDivisor(std::string& date, std::string::iterator& d1,
+  std::string::iterator& d2
+)
+{
+  d1 = std::find(date.begin(), date.end(), '-');
+  if (d1 == date.end()) {
+    return (false);
+  }
+  d2 = std::find(d1 + 1, date.end(), '-');
+  return (d2 != date.end() && std::find(d2 + 1, date.end(), '-') == date.end());
+}
+
+static bool hasOnlyDigits(std::string& sYear, std::string& sMonth,
+  std::string& sDay
+)
+{
   int dayDigit = 0;
   int monthDigit = 0;
 
@@ -72,65 +130,17 @@ bool dateValid(std::string date)
     }
     ++dayDigit;
   }
-  if (monthDigit != 2 || dayDigit != 2) {
-    return (false);
-  }
-
-// validate date range ========================================================
-  std::istringstream iss(sYear);
-
-  iss.exceptions(std::ios::failbit);
-
-  ssize_t iYear = -42;
-  
-  try {
-    iss >> iYear;
-  } catch (std::exception& e) {
-    static_cast<void>(e);
-    return (false);
-  }
-
-  ssize_t iMonth = -42;
-
-  iss.str(sMonth);
-  try {
-    iss >> iMonth;
-  } catch (std::exception& e) {
-    static_cast<void>(e);
-    return (false);
-  }
-
-  ssize_t iDay = -42;
-  
-  iss.str(sDay);
-  try {
-    iss >> iDay;
-  } catch (std::exception& e) {
-    static_cast<void>(e);
-    return (false);
-  }
-  if (iYear < 0) {
-    return (false);
-  } else if (iMonth < JAN || iMonth > DEC || iDay < 1 || iDay > 31) {
-    return (false);
-  } else if (iDay == 29 && iMonth == FEB && isntLeapYear(iYear)) {
-    return (false);
-  } else if ((iDay == 30 || iDay == 31) && iMonth == FEB) {
-    return (false);
-  } else if ((iMonth == APR || iMonth == JUN || iMonth == SEP || iMonth == NOV)
-    && iDay == 31
-  ) {
-    return (false);
-  }
   return (true);
 }
 
-static bool isntLeapYear(long int year)
+static bool isntLeapYear(ssize_t year)
 {
-  if (year % 4 == 0 && year % 100 == 0 && year % 400 == 0) {
-    return (false);
-  } else if (year % 4 == 0 && year % 100 != 0) {
-    return (false);
-  }
-  return (true);
+  return ((year % 4 == 0 && year % 100 == 0 && year % 400 == 0) ||
+    (year % 4 == 0 && year % 100 != 0)
+  );
+}
+
+static bool has31Days(ssize_t month)
+{
+  return (month != APR && month != JUN && month != SEP && month != NOV);
 }

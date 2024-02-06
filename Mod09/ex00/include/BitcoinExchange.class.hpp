@@ -9,11 +9,18 @@
 # include <map>
 # include <sstream>
 # include <stdexcept>
+# include <cmath>
 
 # define MAP_CALL std::map<std::string, double>
 
 bool dateValid(std::string date);
 void removeWhitespace(std::string& line);
+
+class EmptyLineExc: public std::exception
+{
+  public:
+    virtual const char* what() const throw();
+};
 
 class NoDatabaseExc: public std::exception
 {
@@ -69,7 +76,7 @@ class BitcoinExchange
     void  initTable(void)
       throw(NoDatabaseExc, InvalidDatabaseExc, DoubleKeyExc);
     void  convert(std::string const& line)
-      throw(InvalidLineExc, WrongDateExc, ValueWrongExc); 
+      throw(InvalidLineExc, WrongDateExc, ValueWrongExc, EmptyLineExc);
 };
 
 #endif

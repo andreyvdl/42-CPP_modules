@@ -6,7 +6,7 @@
 #    By: adantas- <adantas-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 13:05:54 by adantas-          #+#    #+#              #
-#    Updated: 2024/02/05 16:53:04 by adantas-         ###   ########.fr        #
+#    Updated: 2024/02/06 17:40:40 by adantas-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJECTS=${addprefix object/, ${notdir ${SOURCES:.cpp=.o}}}
 
 VPATH=source
 
-all: object ${NAME}
+all: ${NAME}
 .PHONY: all
 
 ${NAME}: ${OBJECTS}
@@ -33,7 +33,7 @@ ${NAME}: ${OBJECTS}
 	@c++ ${MANDATORY_FLAGS} -Iinclude ${OBJECTS} -o $@
 	@${ECHO} "${GREEN}Done!${RESET}"
 
-object/%.o: %.cpp 
+object/%.o: %.cpp | object 
 	@${ECHO} "${YELLOW}Compiling $@...${RESET}"
 	@c++ ${MANDATORY_FLAGS} -Iinclude -c $< -o $@
 
@@ -45,7 +45,7 @@ clean:
 .PHONY: clean
 
 fclean: clean
-	@rm -fr ${TARGET}
+	@rm -fr ${NAME}
 	@${ECHO} "${GREEN}Executable removed!${RESET}"
 .PHONY: fclean
 
