@@ -1,14 +1,11 @@
 #include <deque>
 #include <iostream>
-#include <list>
 #include <vector>
 
-void insertionSort(std::deque<int>& arr);
-void insertionSort(std::list<int>& arr);
-void insertionSort(std::vector<int>& arr);
-void mergeSort(std::deque<int>& arr);
-void mergeSort(std::list<int>& arr);
-void mergeSort(std::vector<int>& arr);
+template <typename T>
+void insertionSort(T& arr);
+template <typename T>
+void mergeSort(T& arr);
 
 /*
  * TODO:
