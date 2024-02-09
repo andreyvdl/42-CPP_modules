@@ -1,11 +1,12 @@
 #include <deque>
 #include <iostream>
 #include <vector>
+#include <ctime>
 
-template <typename T>
-void insertionSort(T& arr);
-template <typename T>
-void mergeSort(T& arr);
+#include "mergeSort.tpp"
+#include "insertionSort.tpp"
+
+#define CLOCKS_PER_MS 1000
 
 /*
  * TODO:
@@ -17,6 +18,7 @@ void mergeSort(T& arr);
  * Test G2G Ford-Johnson
  * Implement Ford-Johnson of IQ
  * Test IQ Ford-Johnson
+ * use argv as input numbers
  */
 
 int main(void)
@@ -34,11 +36,14 @@ int main(void)
     std::cout << *it << " ";
   }
   std::endl(std::cout);
+  clock_t start = clock();
   mergeSort(sortIt);
+  clock_t end = clock();
   std::cout << "After sorting:  ";
   for (std::vector<int>::iterator it = sortIt.begin(); it != sortIt.end(); ++it) {
     std::cout << *it << " ";
   }
   std::endl(std::cout);
+  std::cout << "time: " << double(end - start) / CLOCKS_PER_MS << "ms" << std::endl;
   return (0);
 }
