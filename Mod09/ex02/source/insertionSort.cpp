@@ -59,6 +59,7 @@ void insertionSort(std::list<int>& arr)
         break;
       }
     }
+// precisa pq o iterator de list nao permite somar um valor
     if (inserted == false) {
       temp.push_back(*it);
     }

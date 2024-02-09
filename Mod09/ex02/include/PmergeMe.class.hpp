@@ -1,10 +1,3 @@
-/**
- * File              : PmergeMe.class.hpp
- * Author            : adantas- <adantas-@student.42sp.org.br>
- * Date              : 2024/02/08
- * Last Modified Date: 2024/02/08
- */
-
 #pragma once
 #ifndef P_MERGE_ME_CLASS_HPP
 # define P_MERGE_ME_CLASS_HPP
