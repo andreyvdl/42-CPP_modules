@@ -1,5 +1,5 @@
-#ifndef INSERTION_SORT_TPP
-# define INSERTION_SORT_TPP
+#ifndef INSERTION_SORT_TEMPLATE_TPP
+# define INSERTION_SORT_TEMPLATE_TPP
 
 # include <iostream>
 # include <algorithm>

@@ -1,5 +1,5 @@
-#ifndef MERGE_SORT_TPP
-# define MERGE_SORT_TPP
+#ifndef MERGE_SORT_TEMPLATE_TPP
+# define MERGE_SORT_TEMPLATE_TPP
 
 # include <iostream>
 # include <algorithm>
