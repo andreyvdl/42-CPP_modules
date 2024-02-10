@@ -28,7 +28,7 @@ VPATH=source
 all: ${NAME}
 .PHONY: all
 
-${NAME}: ${OBJECTS}
+${NAME}: ${INCLUDES} ${EXTRA_DEPS} ${OBJECTS}
 	@${ECHO} "${YELLOW}Compiling $@...${RESET}"
 	@c++ ${MANDATORY_FLAGS} -Iinclude ${OBJECTS} -o $@
 	@${ECHO} "${GREEN}Done!${RESET}"
