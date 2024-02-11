@@ -11,8 +11,6 @@
 
 /*
  * TODO:
- * Implement Ford-Jonhson of wikipedia
- * Test wikipedia Ford-Jonhson
  * use argv as input numbers
  */
 
