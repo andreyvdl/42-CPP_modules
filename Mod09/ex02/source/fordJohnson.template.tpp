@@ -96,7 +96,7 @@ void  sortOnlyBiggers(typename T::iterator kis, typename T::iterator kie,
 
 bool  lowerPos(std::pair<int, int>& pair, const int& v)
 {
-  return (pair.first < v);
+  return (pair.first != v);
 }
 
 /*
@@ -131,15 +131,11 @@ void  binaryInsertion(T& k, U& s)
       if (dist == 0) {
         break ;
       }
-      if (*(lit + dist) < kit->second) {
-        lit += dist + 1;
-      } else if (*(hit - dist) > kit->second) {
-        hit -= dist;
-      } else if (*(hit - dist) == kit->second) {
-        lit = hit - dist;
-        break;
-      } else if (*(lit + dist) == kit->second) {
+      if (*(lit + dist) <= kit->second) {
         lit += dist;
+      } else if (*(hit - dist) >= kit->second) {
+        hit -= dist;
+      } else {
         break;
       }
     }

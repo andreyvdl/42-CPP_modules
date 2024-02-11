@@ -28,12 +28,12 @@ VPATH=source
 all: ${NAME}
 .PHONY: all
 
-${NAME}: ${INCLUDES} ${EXTRA_DEPS} ${OBJECTS}
+${NAME}: ${INCLUDES} ${OBJECTS}
 	@${ECHO} "${YELLOW}Compiling $@...${RESET}"
 	@c++ ${MANDATORY_FLAGS} -Iinclude ${OBJECTS} -o $@
 	@${ECHO} "${GREEN}Done!${RESET}"
 
-object/%.o: %.cpp | object 
+object/%.o: %.cpp ${EXTRA_DEPS} | object 
 	@${ECHO} "${YELLOW}Compiling $@...${RESET}"
 	@c++ ${MANDATORY_FLAGS} -Iinclude -c $< -o $@
 
