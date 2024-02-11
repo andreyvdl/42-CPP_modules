@@ -135,6 +135,12 @@ void  binaryInsertion(T& k, U& s)
         lit += dist + 1;
       } else if (*(hit - dist) > kit->second) {
         hit -= dist;
+      } else if (*(hit - dist) == kit->second) {
+        lit = hit - dist;
+        break;
+      } else if (*(lit + dist) == kit->second) {
+        lit += dist;
+        break;
       }
     }
     *lit >= kit->second ?
