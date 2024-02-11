@@ -32,10 +32,6 @@
  *  comparisons but produces ascending order instead."
  */
 
-bool  higherPos(int& val, std::pair<int, int>& pair);
-bool  lowerPos(std::pair<int, int>& pair, int& val);
-void  sortKGroups(std::pair<int, int>& pair);
-
 /*
  * STEP 1
  */
@@ -52,6 +48,14 @@ void  createPairs(T& k, U arr, std::pair<bool, int>& e, bool const odd)
   e = (odd ? std::make_pair(odd, *ait) : std::make_pair(odd, 0));
 }
 
+void  sortKGroups(std::pair<int, int>& pair)
+{
+// the first element of the pair must be the biggest
+  if (pair.first < pair.second) {
+    std::swap(pair.first, pair.second);
+  }
+}
+
 /*
  * STEP 2
  */
@@ -61,6 +65,11 @@ void  determineLargerElement(T& k)
   std::for_each(k.begin(), k.end(), sortKGroups);
 }
 
+bool  higherPos(const int& v, const int& itContent)
+{
+  return (v < itContent);
+}
+
 /*
  * STEP 3
  * A more simple way to do this is to add all s.first and e.second elements
@@ -68,11 +77,11 @@ void  determineLargerElement(T& k)
  */
 template <typename T, typename U>
 void  sortOnlyBiggers(typename T::iterator kis, typename T::iterator kie,
-  U& s, std::pair<bool, int>& e
+  U& s, std::pair<bool, int> e
 )
 {
   if (kis != kie) {
-    sortOnlyBiggers(kis + 1, kie, s, e);
+    sortOnlyBiggers<T, U>(kis + 1, kie, s, e);
   } else if (e.first) {
     s.push_back(e.second);
     return ;
@@ -80,9 +89,14 @@ void  sortOnlyBiggers(typename T::iterator kis, typename T::iterator kie,
     return ;
   }
 
-  s.insert(std::upper_bound(s.begin(), s.end(), kis.first, higherPos),
-    kis.first
+  s.insert(std::upper_bound(s.begin(), s.end(), kis->first, higherPos),
+    kis->first
   );
+}
+
+bool  lowerPos(std::pair<int, int>& pair, const int& v)
+{
+  return (pair.first < v);
 }
 
 /*
@@ -129,22 +143,6 @@ void  binaryInsertion(T& k, U& s)
   }
 }
 
-void  sortKGroups(std::pair<int, int>& pair)
-{
-// the first element of the pair must be the biggest
-  if (pair.first < pair.second) {
-    std::swap(pair.first, pair.second);
-  }
-}
 
-bool  higherPos(int& val, std::pair<int, int>& pair)
-{
-  return (val < pair.first);
-}
-
-bool  lowerPos(std::pair<int, int>& pair, int& val)
-{
-  return (pair.first < val);
-}
 
 #endif
