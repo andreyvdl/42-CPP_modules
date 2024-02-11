@@ -3,8 +3,8 @@
 #include <vector>
 #include <ctime>
 
-#include "mergeSort.tpp"
-#include "insertionSort.tpp"
+#include "mergeSort.template.tpp"
+#include "insertionSort.template.tpp"
 
 #define CLOCKS_PER_MS 1000
 
