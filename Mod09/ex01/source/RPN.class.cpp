@@ -1,7 +1,5 @@
 #include "../include/RPN.class.hpp"
 
-static void addToStack(std::stack<ssize_t>& calc, ssize_t nbr)
-  throw (CalcMemExc);
 static void executeOperation(std::stack<ssize_t>& calc, char op)
   throw (std::domain_error);
 
@@ -42,7 +40,7 @@ throw (std::domain_error, CalcMemExc)
 
   for (std::string::iterator it = expr.begin(); it != expr.end(); ++it) {
     if (isdigit(static_cast<int>(*it))) {
-      addToStack(calcMem, static_cast<ssize_t>(*it - '0'));
+      calcMem.push(static_cast<ssize_t>(*it - '0'));
     } else {
       executeOperation(calcMem, *it);
     }
@@ -51,15 +49,6 @@ throw (std::domain_error, CalcMemExc)
     throw std::domain_error("Still have numbers! Check your input!");
   }
   return (calcMem.top());
-}
-
-static void addToStack(std::stack<ssize_t>& calc, ssize_t nbr)
-throw (CalcMemExc)
-{
-  if (calc.size() == 4) {
-    throw CalcMemExc();
-  }
-  calc.push(nbr);
 }
 
 static void executeOperation(std::stack<ssize_t>& calc, char op)
