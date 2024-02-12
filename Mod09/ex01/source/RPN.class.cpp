@@ -87,10 +87,7 @@ throw (std::domain_error)
       calc.push(a * b);
       break;
     case '/':
-      if (b == 0) {
-        throw std::domain_error("Division by zero!");
-      }
-      calc.push(a / b);
+      b == 0 ? throw std::domain_error("Division by zero!") : calc.push(a / b);
       break;
   }
 }

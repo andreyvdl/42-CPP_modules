@@ -117,7 +117,7 @@ throw(NoDatabaseExc, InvalidDatabaseExc, DoubleKeyExc)
     }
     try {
       addToTable(line);
-    } catch (std::exception& e) {
+    } catch (DoubleKeyExc& e) {
       database.close();
       throw e;
     }
