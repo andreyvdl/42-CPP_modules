@@ -58,8 +58,7 @@ Module|Score  |Module|Score
 ## Execution
 
 ```sh
-$ cd <module_folder>
-$ cd <exercise_folder>
-$ make
-$ ./<executable>
+cd module_folder/exercise_folder
+make
+./exec
 ```
